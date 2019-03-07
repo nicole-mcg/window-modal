@@ -1,11 +1,12 @@
 import { Component } from "@src/component";
 
 export class Div extends Component {
-    protected element: HTMLElement;
+    protected element: HTMLElement = null as any;
 
-    constructor(className?: string) {
-        super();
-        this.element = document.createElement("div");
-        this.element.className = className || "";
+    constructor(children: Array<Component | string>= [],  className: string = "") {
+        super(children);
+        this.setElement(document.createElement("div"));
+        this.classname(className);
     }
+
 }

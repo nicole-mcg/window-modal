@@ -18,7 +18,7 @@ describe("Button", () => {
 
     it("can be created", () => {
         const text = "hello";
-        const button = new Button(text);
+        const button = new Button([text]);
         expect(button).toBeTruthy();
 
         expect(document.createElement).toHaveBeenCalledWith("button");

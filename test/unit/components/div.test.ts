@@ -18,11 +18,11 @@ describe("Div", () => {
 
     it("can be created", () => {
         const className = "test";
-        const div = new Div(className);
+        const div = new Div([], className);
         expect(div).toBeTruthy();
 
         expect(document.createElement).toHaveBeenCalledWith("div");
-        expect(div).toHaveProperty("element", { className });
+        expect(div).toHaveProperty("element", { className, textContent: "" });
     });
 
 });
