@@ -1,4 +1,5 @@
-import { FloatingWindow, textContent } from "@components/window";
+import { FloatingWindow } from "@components/window";
+import { Component } from "@src/component";
 import { Button } from "@src/components/button";
 import { Div } from "@src/components/div";
 
@@ -34,13 +35,17 @@ describe("FloatingWindow", () => {
                     new Button(["✖"], "close"),
                 ]).classname("FloatingWindow-buttons"),
             ]).classname("FloatingWindow-bar"),
-            new Div([textContent]).classname("FloatingWindow-content"),
+            new Div([""]).classname("FloatingWindow-content"),
         ]);
 
     });
 
     it("can be created without a selector", () => {
         const element = document.createElement("div");
+        const innerHTML = document.createElement("input") as any;
+        element.appendChild(innerHTML);
+
+        const renderedElement = new Component().setElement(element.cloneNode(true) as any);
         (document.querySelector as any).mockReturnValue(element);
 
         const title = "test title";
@@ -48,6 +53,17 @@ describe("FloatingWindow", () => {
         expect(window).toBeTruthy();
         expect(window.element).toBe(element);
 
+        const rend = [
+            new Div([
+                new Div([title]).classname("FloatingWindow-title") as Div,
+                new Div().classname("FloatingWindow-bar-spacer") as Div,
+                new Div([
+                    new Button(["_"], "minimize"),
+                    new Button(["✖"], "close"),
+                ]).classname("FloatingWindow-buttons"),
+            ]).classname("FloatingWindow-bar"),
+            new Div([renderedElement]).classname("FloatingWindow-content"),
+        ];
         expect(window.children).toEqual([
             new Div([
                 new Div([title]).classname("FloatingWindow-title") as Div,
@@ -57,8 +73,7 @@ describe("FloatingWindow", () => {
                     new Button(["✖"], "close"),
                 ]).classname("FloatingWindow-buttons"),
             ]).classname("FloatingWindow-bar"),
-            new Div([textContent]).classname("FloatingWindow-content"),
+            new Div([renderedElement]).classname("FloatingWindow-content"),
         ]);
-
     });
 });

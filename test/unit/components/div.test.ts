@@ -22,7 +22,7 @@ describe("Div", () => {
         expect(div).toBeTruthy();
 
         expect(document.createElement).toHaveBeenCalledWith("div");
-        expect(div).toHaveProperty("element", { className, textContent: "" });
+        expect(div).toHaveProperty("element", { className });
     });
 
 });

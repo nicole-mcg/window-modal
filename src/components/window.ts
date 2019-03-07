@@ -16,9 +16,10 @@ export const textContent = `Lorem ipsum dolor sit amet, consectetur adipiscing e
 
 export class FloatingWindow extends Component {
     protected element: HTMLElement;
+    protected content: Component | string;
     protected title: Div;
     protected windowBar: Div;
-    protected content: Div;
+    protected contentComp: Div;
     protected minimizeButton: Button;
     protected closeButton: Button;
 
@@ -33,8 +34,16 @@ export class FloatingWindow extends Component {
         super();
         autoBind(this);
 
-        this.element = null as any;
-        this.setElement((elementSelector && document.querySelector(elementSelector)) || document.createElement("div"));
+        let element;
+        if (elementSelector) {
+            element = document.querySelector(elementSelector) as any;
+            this.content = new Component().setElement(element.cloneNode(true) as HTMLElement);
+        } else {
+            this.content = "";
+        }
+        this.element = element;
+        this.setElement(element || document.createElement("div"));
+
         this.element.className = "FloatingWindow";
 
         this.pos = { x: 0, y: 0 };
@@ -47,11 +56,9 @@ export class FloatingWindow extends Component {
         this.wasResizeCursor = false;
         this.focused = false;
 
-        const { element } = this;
-
         this.windowBar = null as any;
         this.title = null as any;
-        this.content = null as any;
+        this.contentComp = null as any;
         this.minimizeButton = null as any;
         this.closeButton = null as any;
 
@@ -104,7 +111,7 @@ export class FloatingWindow extends Component {
 
         this.addChild(
             setElement(
-                new Div([textContent]).classname("FloatingWindow-content"),
+                new Div([this.content]).classname("FloatingWindow-content"),
                 "content",
             ),
         );

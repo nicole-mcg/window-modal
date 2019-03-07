@@ -1,10 +1,10 @@
-import { IStyle } from "./interfaces";
+import { IRenderable, IStyle } from "./interfaces";
 
 export class Component {
-    protected children: Array<Component | string>;
+    protected children: IRenderable[];
     protected element?: HTMLElement;
 
-    constructor(children: Array<Component | string>= []) {
+    constructor(children: IRenderable[]= []) {
         this.children = children;
     }
 
@@ -12,15 +12,20 @@ export class Component {
 
     public setElement(element: HTMLElement) {
         this.element = element;
-        element.textContent = "";
         this.children.forEach((child) => {
-            if (typeof child === "string") {
-                element.textContent += child;
+            if (child instanceof HTMLElement || child instanceof Node) {
+                element.appendChild(child);
                 return;
             }
+
+            if (typeof child === "string") {
+                element.appendChild(document.createTextNode(child));
+                return;
+            }
+
             child.setParent(this);
         });
-        // this.children.length = 0;
+        return this;
     }
 
     public getElement() {
@@ -46,7 +51,11 @@ export class Component {
         }
 
         element.appendChild(childElement);
-        this.children.push(child);
+
+        const isAlreadyChild = this.children.find((realChild) => child === realChild);
+        if (!isAlreadyChild) {
+            this.children.push(child);
+        }
     }
 
     public setStyle(style: IStyle) {
