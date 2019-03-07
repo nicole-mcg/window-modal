@@ -37,12 +37,18 @@ export class FloatingWindow extends Component {
         let element;
         if (elementSelector) {
             element = document.querySelector(elementSelector) as any;
+            if (!element) {
+                throw new Error("Could not find element for window. Selector: " + elementSelector);
+            }
             this.content = new Component().setElement(element.cloneNode(true) as HTMLElement);
+            element.innerHTML = "";
         } else {
+            element = document.createElement("div");
             this.content = "";
         }
+
         this.element = element;
-        this.setElement(element || document.createElement("div"));
+        this.setElement(element);
 
         this.element.className = "FloatingWindow";
 
@@ -228,7 +234,7 @@ export class FloatingWindow extends Component {
     private clearMouseState() {
         this.moveStart = null;
         this.lastResize = null;
-        this.element.style.userSelect = "default";
+        this.element.style.userSelect = "initial";
     }
 
     private onMouseUp() {

@@ -9,13 +9,23 @@
     <body>
         Testing 1 2 3
         <script>
-            let fw = new FloatingWindow("Test window");
-            document.body.appendChild(fw.element)
+            window.onload = () => {
+                let fw = new FloatingWindow("Test window", "#window1");
+                document.body.appendChild(fw.element)
 
-            fw = new FloatingWindow("Test window 2");
-            document.body.appendChild(fw.element)
-            console.log("fw", fw);
+                fw = new FloatingWindow("Test window 2", "#window2");
+                document.body.appendChild(fw.element)
+                console.log("fw", fw);
+            }
         </script>
+
+        <div id="window1">
+            Heyyaa!
+        </div>
+
+        <div id="window2">
+            What up yo
+        </div>
     </body>
 
 </html>
