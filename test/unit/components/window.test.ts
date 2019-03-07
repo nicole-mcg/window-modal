@@ -35,7 +35,7 @@ describe("FloatingWindow", () => {
     });
 
     it("can be created without params", () => {
-        const window = new FloatingWindow();
+        const window = new FloatingWindow("");
         expect(window).toBeTruthy();
         expect(document.createElement).toHaveBeenCalledWith("div");
 

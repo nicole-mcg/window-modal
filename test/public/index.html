@@ -9,7 +9,10 @@
     <body>
         Testing 1 2 3
         <script>
-            const fw = new FloatingWindow();
+            let fw = new FloatingWindow("Test window");
+            document.body.appendChild(fw.element)
+
+            fw = new FloatingWindow("Test window 2");
             document.body.appendChild(fw.element)
             console.log("fw", fw);
         </script>

@@ -1,22 +1,59 @@
 
 .FloatingWindow {
     position: absolute;
-    background-color: blue;
-    min-width: 100px;
-    padding: 4px;
+    background-color: white;
+    padding: 0;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: none;
+
+    &-content {
+        padding: 0 4px;
+        width: calc(100% - 8px);
+        height: calc(100% - 32px);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    &-title {
+        margin: 4px;
+        font-weight: bold;
+    }
+
+    &-buttons {
+        padding: 2px;
+    }
 
     &-bar {
-        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        padding: 4px 0;
+        height: 24px;
+        background-color: white;
+        cursor: pointer;
+
+        user-select: none;
+        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
+
+        &-spacer {
+            flex-grow: 10;
+        }
     }
 
     &-button {
-        position: relative;
-
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        padding: 4px;
         margin: 0 1px;
         background-color: #FDFDFD;
         cursor: pointer;
 
-        border: none;
+        border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 4px;
         font-weight: bold;
         font-size: 12px;
@@ -25,12 +62,25 @@
         text-align: center;
 
         &:hover {
-            bottom: 1px;
-            box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.25);
+            border-color: rgba(0, 0, 0, 0.25);
+            filter: brightness(120%);
         }
 
         &:focus {
             outline: 0;
+        }
+
+        &--minimize {
+            font-weight: 1000;
+            font-family: Arial;
+        }
+
+        &--close {
+            background-color: darken(red, 15%);
+            color: white;
+            font-weight: 300;
+            font-family: Arial, sans-serif;
         }
     }
 }
