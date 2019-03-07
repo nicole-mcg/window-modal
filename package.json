@@ -6,16 +6,17 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "auto-bind": "^2.0.0",
-    "jest-summary-reporter": "0.0.2",
     "tsconfig-paths": "^3.8.0"
   },
   "devDependencies": {
+    "jest-summary-reporter": "0.0.2",
     "@types/jest": "^23.3.13",
     "css-loader": "^2.1.0",
     "jest": "^24.1.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.5.0",
+    "serve": "^10.1.2",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "ts-jest": "^24.0.0",
@@ -30,6 +31,7 @@
     "webpack-cli": "^3.2.1"
   },
   "scripts": {
+    "start": "serve ./test/public",
     "test": "jest",
     "build": "webpack",
     "watch": "webpack --watch",

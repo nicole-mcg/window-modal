@@ -1,0 +1,9 @@
+src
+test
+
+tsconfig.json
+tslint.json
+jest.config.jest
+webpack.config.js
+
+.travis.yml
