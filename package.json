@@ -9,10 +9,11 @@
     "tsconfig-paths": "^3.8.0"
   },
   "devDependencies": {
-    "jest-summary-reporter": "0.0.2",
+    "@types/auto-bind": "^1.2.0",
     "@types/jest": "^23.3.13",
     "css-loader": "^2.1.0",
     "jest": "^24.1.0",
+    "jest-summary-reporter": "0.0.2",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.5.0",
