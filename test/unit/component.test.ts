@@ -1,7 +1,7 @@
 import { Component } from "@src/component";
 
 describe("Component", () => {
-    const element: any = { test: 1, appendChild: jest.fn() };
+    const element: any = { test: 1, appendChild: jest.fn(), style: {} };
 
     let component: any;
 
@@ -32,6 +32,14 @@ describe("Component", () => {
         component.addChild(child);
 
         expect(element.appendChild).toHaveBeenCalledWith(childElement);
+    });
+
+    it("can set style", () => {
+        const style: any = { test: "style" };
+
+        component.setStyle(style);
+
+        expect(element.style).toEqual(style);
     });
 
 });
