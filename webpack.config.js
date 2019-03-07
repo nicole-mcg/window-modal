@@ -1,4 +1,3 @@
-require("dotenv").config();
 const path = require("path");
 const fs = require("fs")
 
@@ -34,15 +33,11 @@ module.exports = (inlineEnv={}) => {
       index: './src/index.tsx',
     },
     devtool: "inline-source-map",
-    devServer: {
-      contentBase: "./build",
-      setup: require("./dev-server").endpoints,
-    },
     mode: mode,
     module: {
       rules: [
         {
-          test: /\.(tsx|ts)$/,
+          test: /\.ts$/,
           use: [
             'ts-loader',
             'source-map-loader',
@@ -68,7 +63,7 @@ module.exports = (inlineEnv={}) => {
       ]
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".js"],
+      extensions: [.ts", ".js"],
       plugins: [
         new TsconfigPathsPlugin(),
       ]

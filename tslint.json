@@ -3,13 +3,23 @@
     "extends": [
         "tslint:recommended"
     ],
-    "jsRules": {},
+    "jsRules": {
+    },
     "rules": {
-        "object-literal-sort-keys": false,
-        "no-unused-variable": true,
+        "no-unused-variable": false,
         "no-floating-promises": true,
+        "object-literal-sort-keys": false,
         "no-var-requires": false,
-        "no-console": false
+        "linebreak-style": false,
+        "indent": [true, "spaces", 4],
+        "ter-indent": [4, "spaces"],
+        "no-implicit-dependencies": false,
+        "no-submodule-imports": false,
+        "quotemark": [true, "double"],
+        "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+        "no-this-assignment": false,
+        "no-shadowed-variable": false,
+        "curly": [true, "ignore-same-line"]
     },
     "rulesDirectory": []
 }
