@@ -1,4 +1,4 @@
-import { Button } from "@components/button";
+import { Button } from "@src/components/button";
 
 const oldCreateElement = document.createElement;
 
@@ -9,7 +9,7 @@ describe("Button", () => {
     });
 
     beforeAll(() => {
-        document.createElement = jest.fn();
+        document.createElement = jest.fn().mockReturnValue({});
     });
 
     afterAll(() => {
@@ -17,10 +17,15 @@ describe("Button", () => {
     });
 
     it("can be created", () => {
-        const button = new Button();
-        expect(window).toBeTruthy();
+        const text = "hello";
+        const button = new Button(text);
+        expect(button).toBeTruthy();
 
         expect(document.createElement).toHaveBeenCalledWith("button");
+        expect(button).toHaveProperty("element", {
+            className: "FloatingWindow-button",
+            textContent: text,
+        });
     });
 
 });

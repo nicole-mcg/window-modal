@@ -1,2 +1,8 @@
 
-export { FloatingWindow } from "@components/window";
+import { FloatingWindow } from "@components/window";
+
+import "./index.less";
+
+export {
+    FloatingWindow,
+};

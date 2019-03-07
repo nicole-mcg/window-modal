@@ -31,7 +31,7 @@
     "webpack-cli": "^3.2.1"
   },
   "scripts": {
-    "start": "serve ./test/public",
+    "start": "cp ./test/public/* ./build && serve ./build",
     "test": "jest",
     "build": "webpack",
     "watch": "webpack --watch",

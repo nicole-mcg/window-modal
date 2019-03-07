@@ -1,6 +1,9 @@
+import { IStyle } from "./interfaces";
 
 export class Component {
     protected element?: HTMLElement;
+
+        // this.element.style.setProperty()
 
     public setElement(element: HTMLElement) {
         this.element = element;
@@ -29,6 +32,16 @@ export class Component {
         }
 
         element.appendChild(childElement);
+    }
+
+    public setStyle(style: IStyle) {
+        const { element } = this;
+
+        if (!element) {
+            return;
+        }
+
+        Object.keys(style).forEach((prop: any) => element.style[prop] = style[prop] as any);
     }
 
 }

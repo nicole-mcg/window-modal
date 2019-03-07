@@ -1,11 +1,18 @@
 <html>
 
     <head>
-        
+        <script src="index.bundle.js"></script>
+
+        <link rel="stylesheet" href="index.css">
     </head>
 
     <body>
         Testing 1 2 3
+        <script>
+            const fw = new FloatingWindow();
+            document.body.appendChild(fw.element)
+            console.log("fw", fw);
+        </script>
     </body>
 
 </html>

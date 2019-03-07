@@ -47,6 +47,10 @@ module.exports = {
     ]
   },
   output: {
+    library: "FloatingWindow",
+    libraryExport: "FloatingWindow",
+    libraryTarget: 'umd',
+    auxiliaryComment: 'Test Comment',
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "build"),
   },

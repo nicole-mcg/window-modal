@@ -1,0 +1,36 @@
+
+.FloatingWindow {
+    position: absolute;
+    background-color: blue;
+    min-width: 100px;
+    padding: 4px;
+
+    &-bar {
+        float: right;
+    }
+
+    &-button {
+        position: relative;
+
+        margin: 0 1px;
+        background-color: #FDFDFD;
+        cursor: pointer;
+
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 12px;
+
+        box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.1);
+        text-align: center;
+
+        &:hover {
+            bottom: 1px;
+            box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        &:focus {
+            outline: 0;
+        }
+    }
+}
