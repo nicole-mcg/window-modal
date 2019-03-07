@@ -2,7 +2,7 @@ module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'jsdom',
     moduleNameMapper: {
-        // "@tagging\\/(.*)": "<rootDir>/src/tagging/$1",
+        "@components\\/(.*)": "<rootDir>/src/components/$1",
     },
     setupFilesAfterEnv: [
         "<rootDir>/test/setup.ts"

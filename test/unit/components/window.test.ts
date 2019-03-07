@@ -1,4 +1,4 @@
-import { FloatingWindow } from "../../src";
+import { FloatingWindow } from "@components/window";
 
 const oldCreateElement = document.createElement;
 const oldQuerySelector = document.querySelector;

@@ -1,23 +1,23 @@
 {
     "compilerOptions": {
         /* Basic Options */
-        "target": "es2016",
-        "moduleResolution": "node",
-        "module": "commonjs",
+        "target": "es2017",
+        "module": "es6",
+        "lib": ["es2017", "dom"],
         "declaration": true,
         "sourceMap": true,
         "outDir": "./build",
         "baseUrl": ".",
-        "jsx": "react",
         "paths": {
-            // "@service/*": [
-            //     "src/service/*"
-            // ],
+            "@components/*": [
+                "src/components/*"
+            ],
         },
         /* Strict Type-Checking Options */
         "strict": true,
         "esModuleInterop": true,
         "noImplicitAny": true,
+        "moduleResolution": "classic",
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
@@ -30,14 +30,11 @@
         /* Experimental Options */
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "lib": [
-            "es2016",
-            "dom"
-        ],
+        
     },
     "include": [
         "src/**/*.ts",
-        "tests/**/*.ts"
+        "test/**/*.ts"
     ],
     "exclude": [
         "node_modules",
