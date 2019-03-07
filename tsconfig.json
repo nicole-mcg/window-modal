@@ -9,6 +9,9 @@
         "outDir": "./build",
         "baseUrl": ".",
         "paths": {
+            "@src/*": [
+                "src/*"
+            ],
             "@components/*": [
                 "src/components/*"
             ],
