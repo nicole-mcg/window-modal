@@ -1,8 +1,10 @@
+import { Component } from "@src/component";
 
-export class Button {
-    private element: HTMLElement;
+export class Button extends Component {
+    protected element: HTMLElement;
 
     constructor() {
+        super();
         this.element = document.createElement("button");
     }
 
