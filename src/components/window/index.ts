@@ -152,7 +152,7 @@ export class WindowModal extends Component {
             throw new Error("Could not find element for window. Selector: " + elementSelector);
         }
         const contentEle = document.createElement("div");
-        const content = new Component([contentEle]);
+        const content = new Div([contentEle]);
 
         element.remove();
         document.body.appendChild(element);

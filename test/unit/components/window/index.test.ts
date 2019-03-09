@@ -81,7 +81,7 @@ describe("WindowModal", () => {
         const expectedElement = (
             new Div([
                 new Div([
-                    new Component([contentEle]),
+                    new Div([contentEle]),
                 ]).classname("WindowModal-content"),
             ]).classname("WindowModal") as Div
         );
