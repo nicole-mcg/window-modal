@@ -32,24 +32,19 @@ export class WindowBar extends Component {
         this.init(options);
     }
 
-    public init({ title }: IWindowBarOptions) {
+    public init(options: IWindowBarOptions) {
         const setElement = (element: Component | string, propName: string) => {
             (this as any)[propName] = element;
             return element as Component;
         };
+        const {
+            title,
+        } = options;
+
         const ele = new Div([
             new Div([title]).classname("WindowModal-title") as Div,
             new Div().classname("WindowModal-bar-spacer") as Div,
-            new Div([
-                setElement(
-                    this.createButton("_", "minimize", this.minimize),
-                    "minimizeButton",
-                ),
-                setElement(
-                    this.createButton("✖", "close", this.window.destroy),
-                    "closeButton",
-                ),
-            ]).classname("WindowModal-buttons"),
+            new Div(this.createButtons()).classname("WindowModal-buttons"),
         ]).classname("WindowModal-bar") as Component;
 
         this.element = ele.element;
@@ -116,12 +111,30 @@ export class WindowBar extends Component {
         this.window.maximize();
     }
 
-    private createButton(text: string, id: string, onClick?: () => void): Button {
-        const button = new Button([text], id);
-        if (onClick) {
-            button.element.onclick = onClick;
+    private createButtons() {
+        const { options } = this;
+        const { hideMinimize, hideClose } = options;
+        const buttons = [];
+
+        const createButton = (text: string, id: string, onClick?: () => void): Button => {
+            const button = new Button([text], id);
+            if (onClick) {
+                button.element.onclick = onClick;
+            }
+            return button;
+        };
+
+        if (!hideMinimize) {
+            this.minimizeButton = createButton("_", "minimize", this.minimize);
+            buttons.push(this.minimizeButton);
         }
-        return button;
+
+        if (!hideClose) {
+            this.closeButton = createButton("✖", "close");
+            buttons.push(this.closeButton);
+        }
+
+        return buttons;
     }
 
 }

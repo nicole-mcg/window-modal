@@ -40,6 +40,8 @@ describe("WindowModal", () => {
     });
 
     it("can be created without a selector", () => {
+        const options: any = { title, test: 1 };
+        const windowModal: any = new WindowModal(options);
         expect(windowModal).toBeTruthy();
 
         const element = windowModal.element;
@@ -58,7 +60,7 @@ describe("WindowModal", () => {
 
         expect(resize.WindowResizeHandler).toHaveBeenCalledWith(windowModal);
 
-        expect(bar.WindowBar).toHaveBeenCalledWith({ title, window: windowModal });
+        expect(bar.WindowBar).toHaveBeenCalledWith({ window: windowModal, ...options });
 
         expect(windowModal.content.children).toEqual([""]);
 

@@ -44,10 +44,11 @@ export class WindowModal extends Component {
 
     private _mousePos: IPoint = Point.zero;
 
-    constructor({ title, elementSelector }: IWindowModalOptions) {
+    constructor(options: IWindowModalOptions) {
         super();
         autoBind(this);
 
+        const { title, elementSelector } = options;
         let element: any;
         if (elementSelector) {
             this.content = null as any;
@@ -61,7 +62,7 @@ export class WindowModal extends Component {
         this.element.className = "WindowModal";
         this.resizeHandler = new WindowResizeHandler(this);
 
-        this.windowBar = new WindowBar({ title, window: this });
+        this.windowBar = new WindowBar({ window: this, ...options });
         this.addChild(this.windowBar);
 
         this.content = new Div([this.content || ""]).classname("WindowModal-content") as Component;
@@ -99,7 +100,7 @@ export class WindowModal extends Component {
         this._minimized = true;
     }
 
-    public maximize(callback: () => void) {
+    public maximize(callback?: () => void) {
         this.setStyle({ bottom: null });
         this.updateElement();
         setTimeout(() => {
