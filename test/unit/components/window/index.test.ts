@@ -5,13 +5,21 @@ import { WindowModal } from "@src/components/window";
 import * as resize from "@src/components/window/resize-handler";
 import * as bar from "@src/components/window/window-bar";
 import { addPx } from "@src/util";
+import { createEventStub } from "./test-util";
 
 describe("WindowModal", () => {
     const title = "test title";
     const windowBar = {
         destroy: jest.fn(),
+        clearMouseState: jest.fn(),
+        onMouseMove: jest.fn(),
+        moving: false,
     };
-    const resizeHandler = { test: 1 };
+    const resizeHandler = {
+        clearMouseState: jest.fn(),
+        onMouseMove: jest.fn(),
+        resizing: false,
+    };
 
     let windowModal: any;
 
@@ -114,6 +122,67 @@ describe("WindowModal", () => {
         windowModal.maximize(done);
         expect(windowModal.setStyle).toHaveBeenCalledWith({ bottom: null });
         expect(windowModal.minimized).toBe(false);
+    });
+
+    it("can clear mouse state", () => {
+        windowModal.clearMouseState();
+        expect(windowBar.clearMouseState).toHaveBeenCalled();
+        expect(resizeHandler.clearMouseState).toHaveBeenCalled();
+    });
+
+    it("will clear mouse state on mouse enter (if no buttons held down)", () => {
+        const event  = {
+            buttons: 1,
+        };
+        windowModal.clearMouseState = jest.fn();
+
+        windowModal.onMouseEnter(event);
+        expect(windowModal.clearMouseState).not.toHaveBeenCalled();
+
+        event.buttons = 0;
+        windowModal.onMouseEnter(event);
+        expect(windowModal.clearMouseState).toHaveBeenCalled();
+    });
+
+    it("will clear mouse state on mouse up", () => {
+        windowModal.clearMouseState = jest.fn();
+        windowModal.onMouseUp();
+        expect(windowModal.clearMouseState).toHaveBeenCalled();
+    });
+
+    it("will stop selection while moving or resizing", () => {
+        const event = createEventStub();
+
+        windowModal.onSelectStart(event);
+        expect(event.preventDefault).not.toHaveBeenCalled();
+
+        windowBar.moving = true;
+        windowModal.onSelectStart(event);
+        expect(event.preventDefault).toHaveBeenCalled();
+
+        windowBar.moving = true;
+        event.preventDefault.mockClear();
+
+        resizeHandler.resizing = true;
+        windowModal.onSelectStart(event);
+        expect(event.preventDefault).toHaveBeenCalled();
+    });
+
+    it("will record mouse pos and pass event to bar and resize handler", () => {
+        const event = {
+            pageX: 123,
+            pageY: 321,
+        };
+
+        windowModal.onMouseMove(event);
+
+        expect(windowModal.mousePos).toEqual({
+            x: event.pageX,
+            y: event.pageY,
+        });
+
+        expect(windowBar.onMouseMove).toHaveBeenCalledWith(event);
+        expect(resizeHandler.onMouseMove).toHaveBeenCalledWith(event);
     });
 
 });

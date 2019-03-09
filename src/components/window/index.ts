@@ -24,7 +24,7 @@ export class WindowModal extends Component {
     }
 
     public get moving() { return this.windowBar.moving; }
-    public get resizing() { return Boolean(this.resizeHandler.lastResizePos); }
+    public get resizing() { return Boolean(this.resizeHandler.resizing); }
     public get minimized() { return this._minimized; }
     public get maximized() { return !this._minimized; }
     public get focused() { return this._focused; }

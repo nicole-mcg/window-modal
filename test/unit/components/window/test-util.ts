@@ -19,7 +19,7 @@ export function createWindowStub(element?: HTMLElement): any {
     };
 }
 
-export function createMouseEventStub(target: any) {
+export function createEventStub(target?: any) {
     return {
         target,
         preventDefault: jest.fn(),

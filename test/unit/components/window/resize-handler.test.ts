@@ -1,5 +1,5 @@
 import { WindowResizeHandler } from "@src/components/window/resize-handler";
-import { createMouseEventStub, createWindowStub } from "./test-util";
+import { createEventStub, createWindowStub } from "./test-util";
 
 describe("WindowResizeHandler", () => {
     let windowElement: HTMLElement;
@@ -35,7 +35,7 @@ describe("WindowResizeHandler", () => {
         const { pos, size } = windowStub;
         windowStub.mousePos.x = pos.x + size.x;
         windowStub.mousePos.y = pos.y + size.y;
-        const event = createMouseEventStub(windowElement);
+        const event = createEventStub(windowElement);
 
         resizeHandler.onMouseDown(event);
 
@@ -57,7 +57,7 @@ describe("WindowResizeHandler", () => {
             x: pos.x + size.x,
             y: pos.y + size.y,
          };
-        const event = createMouseEventStub(windowElement);
+        const event = createEventStub(windowElement);
 
         resizeHandler.onMouseMove(event);
 
@@ -89,7 +89,7 @@ describe("WindowResizeHandler", () => {
             x: pos.x + size.x,
             y: pos.y + size.y,
          };
-        const event = createMouseEventStub(windowElement);
+        const event = createEventStub(windowElement);
 
         resizeHandler.onMouseMove(event);
 
