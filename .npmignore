@@ -6,4 +6,5 @@ tslint.json
 jest.config.jest
 webpack.config.js
 
+.gitignore
 .travis.yml
