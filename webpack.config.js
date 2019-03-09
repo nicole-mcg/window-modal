@@ -48,8 +48,8 @@ module.exports = {
     ]
   },
   output: {
-    library: "FloatingWindow",
-    libraryExport: "FloatingWindow",
+    library: "WindowModal",
+    libraryExport: "WindowModal",
     libraryTarget: 'umd',
     auxiliaryComment: 'Test Comment',
     filename: "[name].bundle.js",

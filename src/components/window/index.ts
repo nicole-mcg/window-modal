@@ -58,7 +58,7 @@ export class WindowModal extends Component {
         }
 
         this.element = element;
-        this.element.className = "FloatingWindow";
+        this.element.className = "WindowModal";
         this.resizeHandler = new WindowResizeHandler(this);
 
         this.windowBar = new WindowBar({ title, window: this });

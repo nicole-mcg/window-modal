@@ -7,7 +7,7 @@ const oldQuerySelector = document.querySelector;
 
 const mockComponents: any[] = [];
 
-xdescribe("FloatingWindow", () => {
+xdescribe("WindowModal", () => {
     afterEach(() => {
         jest.clearAllMocks();
         mockComponents.length = 0;
