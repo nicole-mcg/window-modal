@@ -48,7 +48,7 @@ export class WindowModal extends Component {
         super();
         autoBind(this);
 
-        const { title, elementSelector } = options;
+        const { elementSelector } = options;
         let element: any;
         if (elementSelector) {
             this.content = null as any;
@@ -66,7 +66,7 @@ export class WindowModal extends Component {
         this.addChild(this.windowBar);
 
         this.content = new Div([this.content || ""]).classname("WindowModal-content") as Component;
-        this.addChild(this.content as Component);
+        this.addChild(this.content);
 
         this.updateElement();
         window.addEventListener("mouseup", this.onMouseUp);

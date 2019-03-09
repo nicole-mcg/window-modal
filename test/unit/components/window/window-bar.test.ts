@@ -32,7 +32,7 @@ describe("WindowBar", () => {
 
     it("can be created", () => {
         expect(windowBar.moving).toBe(false);
-        const component = (
+        expect(windowBar.element).toEqual((
             new Div([
                 new Div([title]).classname("WindowModal-title") as any,
                 new Div().classname("WindowModal-bar-spacer") as any,
@@ -40,12 +40,52 @@ describe("WindowBar", () => {
                     new Button(["_"], "minimize"),
                     new Button(["✖"], "close"),
                 ]).classname("WindowModal-buttons"),
-            ]).classname("WindowModal-bar")
-        ) as Component;
-        const { element } = component;
-
-        expect(windowBar.element).toEqual(element);
+            ]).classname("WindowModal-bar ") as Component
+        ).element);
         expect(HTMLElement.prototype.addEventListener).toHaveBeenCalledWith("mousedown", windowBar.onMouseDown);
+    });
+
+    it("can be compact", () => {
+        windowBar = new WindowBar({
+            ...options,
+            compact: true,
+        });
+
+        expect(windowBar.element.className).toEqual("WindowModal-bar WindowModal-bar--compact");
+    });
+
+    it("can hide minimize button", () => {
+        windowBar = new WindowBar({
+            ...options,
+            hideMinimize: true,
+        });
+
+        expect(windowBar.element).toEqual((
+            new Div([
+                new Div([title]).classname("WindowModal-title") as any,
+                new Div().classname("WindowModal-bar-spacer") as any,
+                new Div([
+                    new Button(["✖"], "close"),
+                ]).classname("WindowModal-buttons"),
+            ]).classname("WindowModal-bar ") as Component
+        ).element);
+    });
+
+    it("can hide close button", () => {
+        windowBar = new WindowBar({
+            ...options,
+            hideClose: true,
+        });
+
+        expect(windowBar.element).toEqual((
+            new Div([
+                new Div([title]).classname("WindowModal-title") as any,
+                new Div().classname("WindowModal-bar-spacer") as any,
+                new Div([
+                    new Button(["_"], "minimize"),
+                ]).classname("WindowModal-buttons"),
+            ]).classname("WindowModal-bar ") as Component
+        ).element);
     });
 
     it("can move the window", () => {

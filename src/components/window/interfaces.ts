@@ -10,4 +10,5 @@ export interface IWindowBarOptions {
     window: WindowModal;
     hideClose?: boolean;
     hideMinimize?: boolean;
+    compact?: boolean;
 }

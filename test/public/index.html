@@ -9,16 +9,17 @@
     <body>
         Testing 1 2 3
         <script>
+            let fw;
             window.onload = () => {
-                let fw = new WindowModal({
+                fw = new WindowModal({
                     title: "Test window",
                     elementSelector: "#window1"
                 });
 
-                fw = new WindowModal({
-                    title: "Test window 2", 
-                    elementSelector: "#window2",
-                });
+                // fw = new WindowModal({
+                //     title: "Test window 2", 
+                //     elementSelector: "#window2",
+                // });
                 console.log("fw", fw);
             }
         </script>

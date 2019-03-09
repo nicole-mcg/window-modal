@@ -33,19 +33,17 @@ export class WindowBar extends Component {
     }
 
     public init(options: IWindowBarOptions) {
-        const setElement = (element: Component | string, propName: string) => {
-            (this as any)[propName] = element;
-            return element as Component;
-        };
         const {
             title,
+            compact,
         } = options;
 
+        const classname = compact ? "WindowModal-bar--compact" : "";
         const ele = new Div([
             new Div([title]).classname("WindowModal-title") as Div,
             new Div().classname("WindowModal-bar-spacer") as Div,
             new Div(this.createButtons()).classname("WindowModal-buttons"),
-        ]).classname("WindowModal-bar") as Component;
+        ]).classname(`WindowModal-bar ${classname}`) as Component;
 
         this.element = ele.element;
         this.element.addEventListener("mousedown", this.onMouseDown);

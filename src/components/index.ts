@@ -1,3 +1,4 @@
+import autoBind from "auto-bind";
 import { IRenderable, IStyle } from "../interfaces";
 
 export class Component {
@@ -10,6 +11,7 @@ export class Component {
     }
 
     constructor(children: IRenderable[]= []) {
+        autoBind(this);
         this.children = children;
     }
 
