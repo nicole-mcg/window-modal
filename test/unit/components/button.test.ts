@@ -12,7 +12,7 @@ describe("Button", () => {
         expect(button).toBeTruthy();
 
         const element = document.createElement("button");
-        element.className = "WindowModalbutton";
+        element.className = "WindowModal-button";
         element.appendChild(content.cloneNode());
         expect(button.element).toEqual(element);
     });

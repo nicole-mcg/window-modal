@@ -64,7 +64,7 @@ export class WindowModal extends Component {
         this.windowBar = new WindowBar({ title, window: this });
         this.addChild(this.windowBar);
 
-        this.content = new Div([this.content || ""]).classname("WindowModalcontent") as Component;
+        this.content = new Div([this.content || ""]).classname("WindowModal-content") as Component;
         this.addChild(this.content as Component);
 
         this.updateElement();
@@ -99,13 +99,13 @@ export class WindowModal extends Component {
         this._minimized = true;
     }
 
-    public maximize() {
+    public maximize(callback: () => void) {
         this.setStyle({ bottom: null });
-        this.windowBar.setStyle({ cursor: "pointer" });
         this.updateElement();
         setTimeout(() => {
             this.setStyle({ transition: "all 0.05s ease" });
             this._minimized = false;
+            callback && callback();
         }, 600);
     }
 

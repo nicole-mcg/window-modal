@@ -34,13 +34,13 @@ describe("WindowBar", () => {
         expect(windowBar.moving).toBe(false);
         const component = (
             new Div([
-                new Div([title]).classname("WindowModaltitle") as any,
-                new Div().classname("WindowModalbar-spacer") as any,
+                new Div([title]).classname("WindowModal-title") as any,
+                new Div().classname("WindowModal-bar-spacer") as any,
                 new Div([
                     new Button(["_"], "minimize"),
                     new Button(["✖"], "close"),
-                ]).classname("WindowModalbuttons"),
-            ]).classname("WindowModalbar")
+                ]).classname("WindowModal-buttons"),
+            ]).classname("WindowModal-bar")
         ) as Component;
         const { element } = component;
 

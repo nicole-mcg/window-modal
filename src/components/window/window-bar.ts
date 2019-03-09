@@ -38,8 +38,8 @@ export class WindowBar extends Component {
             return element as Component;
         };
         const ele = new Div([
-            new Div([title]).classname("WindowModaltitle") as Div,
-            new Div().classname("WindowModalbar-spacer") as Div,
+            new Div([title]).classname("WindowModal-title") as Div,
+            new Div().classname("WindowModal-bar-spacer") as Div,
             new Div([
                 setElement(
                     this.createButton("_", "minimize", this.minimize),
@@ -49,8 +49,8 @@ export class WindowBar extends Component {
                     this.createButton("✖", "close", this.window.destroy),
                     "closeButton",
                 ),
-            ]).classname("WindowModalbuttons"),
-        ]).classname("WindowModalbar") as Component;
+            ]).classname("WindowModal-buttons"),
+        ]).classname("WindowModal-bar") as Component;
 
         this.element = ele.element;
         this.element.addEventListener("mousedown", this.onMouseDown);

@@ -2,67 +2,118 @@ import { Component } from "@component";
 import { Button } from "@components/button";
 import { Div } from "@src/components/div";
 import { WindowModal } from "@src/components/window";
+import * as resize from "@src/components/window/resize-handler";
+import * as bar from "@src/components/window/window-bar";
+import { addPx } from "@src/util";
 
-const oldQuerySelector = document.querySelector;
+describe("WindowModal", () => {
+    const title = "test title";
+    const windowBar = {
+        destroy: jest.fn(),
+    };
+    const resizeHandler = { test: 1 };
 
-const mockComponents: any[] = [];
+    let windowModal: any;
 
-xdescribe("WindowModal", () => {
+    beforeEach(() => {
+        windowModal = new WindowModal({ title });
+    });
+
     afterEach(() => {
         jest.clearAllMocks();
-        mockComponents.length = 0;
     });
 
     beforeAll(() => {
         document.querySelector = jest.fn();
-    });
-
-    afterAll(() => {
-        document.querySelector = oldQuerySelector;
-    });
-
-    it("can be created with a selector", () => {
-        const title = "test title";
-        const window: any = new WindowModal({ title });
-        expect(window).toBeTruthy();
-
-        expect(window.children).toEqual([
-            new Div([
-                new Div([title]).classname("WindowModaltitle") as Div,
-                new Div().classname("WindowModalbar-spacer") as Div,
-                new Div([
-                    new Button(["_"], "minimize"),
-                    new Button(["✖"], "close"),
-                ]).classname("WindowModalbuttons"),
-            ]).classname("WindowModalbar"),
-            new Div([""]).classname("WindowModalcontent"),
-        ]);
-
+        window.addEventListener = jest.fn();
+        window.removeEventListener = jest.fn();
+        (bar.WindowBar as any) = jest.fn().mockImplementation(() => windowBar);
+        (resize.WindowResizeHandler as any) = jest.fn().mockImplementation(() => resizeHandler);
     });
 
     it("can be created without a selector", () => {
-        const element = document.createElement("div");
-        const innerHTML = document.createElement("input") as any;
-        element.appendChild(innerHTML);
+        expect(windowModal).toBeTruthy();
 
-        const renderedElement = new Component([element.cloneNode(true)]);
-        (document.querySelector as any).mockReturnValue(element);
-
-        const title = "test title";
-        const window: any = new WindowModal({ title, elementSelector: "#mydiv" });
-        expect(window).toBeTruthy();
-        expect(window.element).toBe(element);
-
-        expect(window.children).toEqual([
+        const element = windowModal.element;
+        const expectedElement = (
             new Div([
-                new Div([title]).classname("WindowModaltitle") as Div,
-                new Div().classname("WindowModalbar-spacer") as Div,
-                new Div([
-                    new Button(["_"], "minimize"),
-                    new Button(["✖"], "close"),
-                ]).classname("WindowModalbuttons"),
-            ]).classname("WindowModalbar"),
-            new Div([renderedElement]).classname("WindowModalcontent"),
-        ]);
+                new Div([""]).classname("WindowModal-content"),
+            ]).classname("WindowModal") as Div
+        );
+        const { pos, size } = windowModal;
+        expectedElement.setStyle({
+            zIndex: "1",
+            left: addPx(pos.x), top: addPx(pos.y),
+            width: addPx(size.x), height: addPx(size.y),
+        });
+        expect(element).toEqual(expectedElement.element);
+
+        expect(resize.WindowResizeHandler).toHaveBeenCalledWith(windowModal);
+
+        expect(bar.WindowBar).toHaveBeenCalledWith({ title, window: windowModal });
+
+        expect(windowModal.content.children).toEqual([""]);
+
+        expect(window.addEventListener).toHaveBeenCalledWith("mouseup", windowModal.onMouseUp);
+        expect(window.addEventListener).toHaveBeenCalledWith("mousemove", windowModal.onMouseMove);
+        expect(window.addEventListener).toHaveBeenCalledWith("select", windowModal.onSelectStart);
+        expect(window.addEventListener).toHaveBeenCalledWith("mouseenter", windowModal.onMouseEnter);
     });
+
+    it("can be created with a selector", () => {
+        const contentEle = new Div(["test"]).element;
+        (document.querySelector as any).mockReturnValue(contentEle);
+        const query = "#content-ele";
+        const windowModal: any = new WindowModal({ title, elementSelector: query });
+        expect(windowModal).toBeTruthy();
+
+        const element = windowModal.element;
+        const expectedElement = (
+            new Div([
+                new Div([
+                    new Component([contentEle]),
+                ]).classname("WindowModal-content"),
+            ]).classname("WindowModal") as Div
+        );
+
+        const { pos, size } = windowModal;
+        expectedElement.setStyle({
+            zIndex: "1",
+            left: addPx(pos.x), top: addPx(pos.y),
+            width: addPx(size.x), height: addPx(size.y),
+        });
+        expect(element).toEqual(expectedElement.element);
+    });
+
+    it("can be destroyed", () => {
+        document.body.appendChild(windowModal.element);
+
+        windowModal.destroy();
+
+        expect(window.removeEventListener).toHaveBeenCalledWith("mouseup", windowModal.onMouseUp);
+        expect(window.removeEventListener).toHaveBeenCalledWith("mousemove", windowModal.onMouseMove);
+        expect(window.removeEventListener).toHaveBeenCalledWith("select", windowModal.onSelectStart);
+        expect(window.removeEventListener).toHaveBeenCalledWith("mouseenter", windowModal.onMouseEnter);
+        expect(windowModal.windowBar.destroy).toHaveBeenCalled();
+        expect(document.contains(windowModal.element)).toBe(false);
+    });
+
+    it("can be minimized", () => {
+        windowModal.setStyle = jest.fn();
+        windowModal.minimize();
+        expect(windowModal.setStyle).toHaveBeenCalledWith({
+            transition: "all 0.5s ease",
+            width: "200px", height: "25px",
+            left: "0px", top: "0px",
+        });
+        expect(windowModal.minimized).toBe(true);
+    });
+
+    it("can be maximized", (done) => {
+        windowModal.setStyle = jest.fn();
+        windowModal.maximize(done);
+        expect(windowModal.setStyle).toHaveBeenCalledWith({ bottom: null });
+        expect(windowModal.minimized).toBe(false);
+    });
+
 });

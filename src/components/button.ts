@@ -6,10 +6,10 @@ export class Button extends Component {
     constructor(children: IRenderable[], id?: string) {
         super(children);
         this.element = document.createElement("button");
-        this.classname("WindowModalbutton");
+        this.classname("WindowModal-button");
 
         if (id) {
-            this.element.className += ` WindowModalbutton--${id}`;
+            this.element.className += ` WindowModal-button--${id}`;
         }
     }
 
