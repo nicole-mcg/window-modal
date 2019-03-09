@@ -12,9 +12,9 @@ describe("Button", () => {
         expect(button).toBeTruthy();
 
         const element = document.createElement("button");
-        element.className = "FloatingWindow-button";
+        element.className = "WindowModalbutton";
         element.appendChild(content.cloneNode());
-        expect(button).toHaveProperty("element", element);
+        expect(button.element).toEqual(element);
     });
 
 });

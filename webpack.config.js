@@ -4,6 +4,7 @@ const fs = require("fs")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: "",
@@ -60,6 +61,12 @@ module.exports = {
       // both options are optional
       filename: "[name].css",
       chunkFilename: "[id].css"
+    }),
+
+    new HtmlWebpackPlugin({
+      template: "test/public/index.html",
+      // favicon: "assets/favicon.ico",
+      hash: true,
     }),
   ],
   optimization: {

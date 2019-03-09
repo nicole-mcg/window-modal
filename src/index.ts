@@ -1,8 +1,8 @@
 
-import { FloatingWindow } from "@components/window";
+import { WindowModal } from "./components/window";
 
 import "./index.less";
 
 export {
-    FloatingWindow,
+    WindowModal as FloatingWindow,
 };

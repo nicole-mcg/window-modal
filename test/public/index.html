@@ -10,21 +10,33 @@
         Testing 1 2 3
         <script>
             window.onload = () => {
-                let fw = new FloatingWindow("Test window", "#window1");
-                document.body.appendChild(fw.element)
+                let fw = new FloatingWindow({
+                    title: "Test window",
+                    elementSelector: "#window1"
+                });
 
-                fw = new FloatingWindow("Test window 2", "#window2");
-                document.body.appendChild(fw.element)
+                fw = new FloatingWindow({
+                    title: "Test window 2", 
+                    elementSelector: "#window2",
+                });
                 console.log("fw", fw);
             }
         </script>
 
-        <div id="window1">
-            Heyyaa!
-        </div>
+        <div style="position: relative;">
+            <div id="window1">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 
-        <div id="window2">
-            What up yo
+                    Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+                    
+                    Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.
+            </div>
+
+            <div id="window2">
+                    Praesent dapibus, neque id cursus faucibus, tortor neque egestas auguae, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
+
+                    Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.
+            </div>
         </div>
     </body>
 

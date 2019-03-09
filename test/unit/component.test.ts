@@ -1,4 +1,4 @@
-import { Component } from "@src/component";
+import { Component } from "@component";
 
 describe("Component", () => {
     const element: any = { test: 1, appendChild: jest.fn(), style: {} };
@@ -7,11 +7,11 @@ describe("Component", () => {
 
     beforeEach(() => {
         component = new Component();
-        component.setElement(element);
+        component.element = element;
     });
 
     it("can have element set", () => {
-        expect(component.getElement()).toBe(element);
+        expect(component.element).toBe(element);
     });
 
     it("can set parent", () => {
@@ -25,7 +25,7 @@ describe("Component", () => {
     it("can add child", () => {
         const childElement = { test: 1 };
         const child = {
-            getElement: jest.fn().mockReturnValue(childElement),
+            element: childElement,
             appendChild: jest.fn(),
         };
 

@@ -20,7 +20,10 @@
         "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
         "no-this-assignment": false,
         "no-shadowed-variable": false,
-        "curly": [true, "ignore-same-line"]
+        "curly": [true, "ignore-same-line"],
+        "no-unused-expression": false,
+        "variable-name": false,
+        "member-access": false
     },
     "rulesDirectory": []
 }

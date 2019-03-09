@@ -9,18 +9,15 @@
         "outDir": "./build",
         "baseUrl": ".",
         "paths": {
-            "@src/*": [
-                "src/*"
-            ],
-            "@components/*": [
-                "src/components/*"
-            ],
+            "@src/*": [ "src/*" ],
+            "@components/*": [ "src/components/*" ],
+            "@component": [ "src/components" ],
         },
         /* Strict Type-Checking Options */
         "strict": true,
         "esModuleInterop": true,
         "noImplicitAny": true,
-        "moduleResolution": "classic",
+        "moduleResolution": "node",
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,

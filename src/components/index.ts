@@ -1,35 +1,16 @@
-import { IRenderable, IStyle } from "./interfaces";
+import { IRenderable, IStyle } from "../interfaces";
 
 export class Component {
     protected children: IRenderable[];
-    protected element?: HTMLElement;
+    private _element?: HTMLElement;
+    public get element() { return (this._element as HTMLElement); }
+    public set element(element: HTMLElement) {
+        this._element = element;
+        this.addChildren();
+    }
 
     constructor(children: IRenderable[]= []) {
         this.children = children;
-    }
-
-        // this.element.style.setProperty()
-
-    public setElement(element: HTMLElement) {
-        this.element = element;
-        this.children.forEach((child) => {
-            if (child instanceof HTMLElement || child instanceof Node) {
-                element.appendChild(child);
-                return;
-            }
-
-            if (typeof child === "string") {
-                element.appendChild(document.createTextNode(child));
-                return;
-            }
-
-            child.setParent(this);
-        });
-        return this;
-    }
-
-    public getElement() {
-        return this.element;
     }
 
     public setParent(parent: Component) {
@@ -45,7 +26,7 @@ export class Component {
     public addChild(child: Component) {
         const { element } = this;
 
-        const childElement = child.getElement();
+        const childElement = child.element;
         if (!element || !childElement) {
             return;
         }
@@ -86,6 +67,33 @@ export class Component {
         }
 
         return this.element ? this.element.className : "";
+    }
+
+    private addChildren() {
+        const { element } = this;
+
+        if (!element) {
+            return;
+        }
+
+        this.children.forEach((child) => {
+            try {
+                if (element.contains(child as any)) {
+                    return;
+                }
+            } catch { /**/ }
+            if (child instanceof HTMLElement || child instanceof Node) {
+                element.appendChild(child);
+                return;
+            }
+
+            if (typeof child === "string") {
+                element.appendChild(document.createTextNode(child));
+                return;
+            }
+
+            child.setParent(this);
+        });
     }
 
 }
