@@ -5,7 +5,7 @@ This is an interface which is used to specify an icon for the window ([Window Op
 It supports multiple ways to specify an icon. If more than one key is specified, keys will be used in this order:
 `element`, `selector`, `innerHTML`, `src`
 
-If no key is specified, a blank div used a icon content
+If no key is specified, a blank div used as icon content
 
 <b><sub>* Options with "?" are optional</sub></b>
 
