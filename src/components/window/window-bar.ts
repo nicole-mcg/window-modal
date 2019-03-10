@@ -104,7 +104,7 @@ export class WindowBar extends Component {
     }
 
     private onMouseDown(event: any) {
-        if (!event || event.button !== 0) {
+        if (!event || event.button !== 0 || this.window.minimized) {
             return;
         }
 
