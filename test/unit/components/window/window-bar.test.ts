@@ -146,6 +146,19 @@ describe("WindowBar", () => {
         expect(mouseMoveEvent.preventDefault).toHaveBeenCalled();
     });
 
+    it("can't be moved while minimized", () => {
+        const mouseDownEvent = {
+            button: 0,
+            pageX: windowStub.pos.x + 20,
+            pageY: windowStub.pos.y + 5,
+        };
+
+        windowStub.minimized = true;
+
+        windowBar.onMouseDown(mouseDownEvent);
+        expect(windowBar.moving).toBe(false);
+    });
+
     it("can minimize", () => {
         windowBar.setStyle = jest.fn();
         windowBar.minimize();
