@@ -11,6 +11,7 @@ module.exports = {
   entry: {
     index: './src/index.ts',
   },
+  target: 'web',
   devtool: "inline-source-map",
   mode: "development",
   module: {
@@ -52,7 +53,7 @@ module.exports = {
     libraryExport: "WindowModal",
     libraryTarget: 'umd',
     auxiliaryComment: 'Test Comment',
-    filename: "[name].bundle.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "build"),
   },
   plugins: [
