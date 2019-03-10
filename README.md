@@ -15,7 +15,7 @@
 ## Features
 
 - Pure JS
-- Designed to be used alone, or wrapped by front end frameworks (React, Vue, etc)
+- Designed to be used in vanilla JS, or wrapped by front end frameworks (React, Vue, etc)
 - Movable
 - Resizable
 - Titles (with icons)
