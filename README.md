@@ -29,7 +29,7 @@
 ## Usage
 
 <details>
-    <summary>
+    <summary style="display:inline-block;">
         <h3>CDN</h3>
     </summary>
     
@@ -44,7 +44,7 @@
 
 <details open>
     <summary>
-        <h3>npm</h3>
+        <h3 style="display:inline-block;">npm</h3>
     </summary>
 
 `npm install window-modal`
