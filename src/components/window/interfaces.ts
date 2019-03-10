@@ -2,8 +2,8 @@ import { IPoint } from "@src/interfaces";
 import { WindowModal } from "./index";
 
 export interface IWindowModalOptions extends Partial<IWindowBarOptions> {
-    window?: undefined; // Replace window from IWindowBarOptions
-    title: string;
+    window?: never; // Replace window from IWindowBarOptions
+    title?: string;
     elementSelector?: string;
     pos?: IPoint;
     size?: IPoint;
@@ -12,8 +12,8 @@ export interface IWindowModalOptions extends Partial<IWindowBarOptions> {
 }
 
 export interface IWindowBarOptions {
-    title: string;
     window: WindowModal;
+    title?: string;
     icon?: IWindowIcon;
     hideClose?: boolean;
     hideMinimize?: boolean;
