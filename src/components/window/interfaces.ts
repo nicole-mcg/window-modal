@@ -8,7 +8,15 @@ export interface IWindowModalOptions {
 export interface IWindowBarOptions {
     title: string;
     window: WindowModal;
+    icon?: IWindowIcon;
     hideClose?: boolean;
     hideMinimize?: boolean;
     compact?: boolean;
+}
+
+export interface IWindowIcon {
+    src?: string;
+    innerHTML?: string;
+    element?: HTMLElement;
+    selector?: string;
 }
