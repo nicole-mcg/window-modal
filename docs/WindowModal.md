@@ -11,6 +11,8 @@ The `WindowModal` class has a number of properties and functions which you can u
 | size | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [x] </li></ul>  | The size of the window |
 | pos | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [x] </li></ul>  | The location of the window `left: pos.x; top: pos.y` |
 | focused | boolean | <ul><li>- [x] </li></ul>  | True if the window element has focus |
+| resizable | boolean | <ul><li>- [x] </li></ul>  | If false, the window cannot be resized |
+| movable | boolean | <ul><li>- [x] </li></ul>  | If false, the window cannot be moved by the user |
 | moving | boolean | <ul><li>- [ ] </li></ul>  | True if the window is currently being moved |
 | resizing | boolean | <ul><li>- [ ] </li></ul>  | True if the window is currently being resized |
 | mousePos | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [ ] </li></ul>  | The current position of the mouse on screen |
