@@ -7,7 +7,7 @@
     <br>
     Includes many features and <a href="https://github.com/nik-m2/window-modal/blob/master/docs/options.md">options</a>! 
     <br>
-    <a target="_blank" href="https://codesandbox.io/s/yqwmql4kp9"><b>Demo</b></a>
+    <a href="https://codesandbox.io/s/yqwmql4kp9"><b>Demo</b></a>
     <br>
     <img src="https://user-images.githubusercontent.com/20328954/54089282-d78e3d00-433d-11e9-802e-5c404283cc4a.png"/>
     <br>
