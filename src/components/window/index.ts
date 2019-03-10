@@ -65,13 +65,26 @@ export class WindowModal extends Component {
     constructor(options: IWindowModalOptions = {}) {
         super();
         autoBind(this);
-        this._title = options.title || "";
+
+        this._title = "";
+        if (options.title) {
+            if (typeof options.title !== "string") {
+                throw new Error("Invalid elementSelector specified for window-modal: " + elementSelector);
+            }
+            this._title = options.title;
+        }
 
         if (options.pos) {
+            if (typeof options.pos !== "object") {
+                throw new Error("Invalid pos specified for window-modal");
+            }
             this._pos = options.pos;
         }
 
         if (options.size) {
+            if (typeof options.size !== "object") {
+                throw new Error("Invalid pos specified for window-modal");
+            }
             this._size = options.size;
         }
 
@@ -88,6 +101,9 @@ export class WindowModal extends Component {
         const { elementSelector } = options;
         let element: any;
         if (elementSelector) {
+            if (typeof elementSelector !== "string") {
+                throw new Error("Invalid elementSelector specified for window-modal: " + elementSelector);
+            }
             this.content = null as any;
             element = this.hijackElement(elementSelector);
         } else {
