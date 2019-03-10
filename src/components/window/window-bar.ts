@@ -98,7 +98,7 @@ export class WindowBar extends Component {
         this.minimizeButton.element.textContent = "□";
     }
 
-    public maximize() {
+    public unminimize() {
         this.setStyle({ cursor: "pointer" });
         this.minimizeButton.element.textContent = "_";
     }

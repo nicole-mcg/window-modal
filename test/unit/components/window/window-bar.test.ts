@@ -154,9 +154,9 @@ describe("WindowBar", () => {
         expect(windowBar.minimizeButton.element.textContent).toEqual("□");
     });
 
-    it("can maximize", () => {
+    it("can unminimize", () => {
         windowBar.setStyle = jest.fn();
-        windowBar.maximize();
+        windowBar.unminimize();
 
         expect(windowBar.setStyle).toHaveBeenCalledWith({ cursor: "pointer" });
         expect(windowBar.minimizeButton.element.textContent).toEqual("_");

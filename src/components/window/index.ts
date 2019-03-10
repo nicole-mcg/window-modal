@@ -26,7 +26,7 @@ export class WindowModal extends Component {
     public get moving() { return this.windowBar.moving; }
     public get resizing() { return Boolean(this.resizeHandler.resizing); }
     public get minimized() { return this._minimized; }
-    public get maximized() { return !this._minimized; }
+    public get unminimized() { return !this._minimized; }
     public get focused() { return this._focused; }
     public set focused(focused: boolean) {
         this._focused = focused;
@@ -102,7 +102,7 @@ export class WindowModal extends Component {
 
     public minimize() {
         if (this.minimized) {
-            this.maximize();
+            this.unminimize();
             return;
         }
 
@@ -115,12 +115,12 @@ export class WindowModal extends Component {
         this._minimized = true;
     }
 
-    public maximize(callback?: () => void) {
+    public unminimize(callback?: () => void) {
         this.setStyle({ bottom: null });
         this.updateElement();
         setTimeout(() => {
             this.setStyle({ transition: "all 0.05s ease" });
-            this.windowBar.maximize();
+            this.windowBar.unminimize();
             this._minimized = false;
             callback && callback();
         }, 600);
