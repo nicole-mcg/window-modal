@@ -22,4 +22,5 @@
 - Minimize
 - Close
 - Scrollable
-- Customizable style, as well as many options
+- Customizable style
+- Many options!
