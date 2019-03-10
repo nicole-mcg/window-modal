@@ -30,7 +30,7 @@
 
 <details>
     <summary style="display:inline-block;">
-        <h3>CDN</h3>
+        <span><h3>CDN</h3></span>
     </summary>
     
 ```xml
@@ -44,7 +44,7 @@
 
 <details open>
     <summary>
-        <h3 style="display:inline-block;">npm</h3>
+        <bold>npm</bold>
     </summary>
 
 `npm install window-modal`
