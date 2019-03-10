@@ -5,7 +5,7 @@
 <p align="center">
     A modal window element designed to be smooth, clean and user friendly.
     <br>
-    Includes many features and options! 
+    Includes many features and <a href="https://github.com/nik-m2/window-modal/blob/master/docs/options.md">options</a>! 
     <br>
     <img src="https://user-images.githubusercontent.com/20328954/54089282-d78e3d00-433d-11e9-802e-5c404283cc4a.png"/>
     <br>
@@ -26,7 +26,7 @@
 - Customizable style
 - Many options!
 
-## Setup/Usage
+## Setup
 
 <details>
     <summary style="display:inline-block;">
@@ -36,9 +36,6 @@
 
 ```xml
     <script src="https://cdn.jsdelivr.net/npm/window-modal/build/index.js"/>
-    <script>
-        var windowModal = new WindowModal(options);
-    </script>
 ```
     
 </details>
@@ -55,13 +52,16 @@
     
 ```javascript
     import WindowModal from "window-modal";
-    
-    // const WindowModal = require("window-modal");
-    
-    const windowModal = new WindowModal(options)
 ```
 </details>
 
-## Options
+## Usage
 
-Coming soon!
+```
+const windowModal = new WindowModal(options);
+```
+
+## Docs
+- [Options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)
+- [WindowModal Class](https://github.com/nik-m2/window-modal/blob/master/docs/WindowModal.md)
+
