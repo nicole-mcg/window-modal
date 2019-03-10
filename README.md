@@ -61,5 +61,7 @@
 const windowModal = new WindowModal(options);
 ```
 
-[Options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)
+## Docs
+- [Options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)
+- [`WindowModal`](https://github.com/nik-m2/window-modal/tree/master/docs)
 
