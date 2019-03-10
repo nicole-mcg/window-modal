@@ -1,7 +1,5 @@
-import { Component } from "@src/components";
 import { Button } from "@src/components/button";
 import * as div from "@src/components/div";
-import { WindowIcon } from "@src/components/window/icon";
 import { WindowBar } from "@src/components/window/window-bar";
 import { createWindowStub } from "./test-util";
 
