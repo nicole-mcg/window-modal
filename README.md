@@ -5,7 +5,7 @@
 <p align="center">
     A modal window element designed to be smooth, clean and user friendly.
     <br>
-    Includes many features and options! 
+    Includes many features and [options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)! 
     <br>
     <img src="https://user-images.githubusercontent.com/20328954/54089282-d78e3d00-433d-11e9-802e-5c404283cc4a.png"/>
     <br>
