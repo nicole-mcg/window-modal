@@ -8,6 +8,11 @@ export class WindowIcon extends Component {
 
         const className = " WindowModal-icon";
         if (icon.element) {
+
+            if (icon.element.parentElement) {
+                icon.element.remove();
+            }
+
             icon.element.className += className;
             return icon.element;
         }
@@ -17,6 +22,11 @@ export class WindowIcon extends Component {
             if (!element) {
                 throw new Error("Could not find element for window icon: " + icon.selector);
             }
+
+            if (element.parentElement) {
+                element.remove();
+            }
+
             element.className += className;
             return element as HTMLElement;
         }

@@ -8,6 +8,7 @@ import { WindowIcon } from "./icon";
 import { IWindowBarOptions } from "./interfaces";
 
 export class WindowBar extends Component {
+    public get moving() { return Boolean(this._moveStartPos); }
     protected icon: WindowIcon;
     protected minimizeButton: Button;
     protected closeButton: Button;
@@ -17,7 +18,6 @@ export class WindowBar extends Component {
     protected window: WindowModal;
 
     private _moveStartPos: IPoint | null;
-    public get moving() { return Boolean(this._moveStartPos); }
 
     constructor(options: IWindowBarOptions) {
         super();
@@ -93,6 +93,16 @@ export class WindowBar extends Component {
         event.preventDefault();
     }
 
+    public minimize() {
+        this.setStyle({ cursor: "default" });
+        this.minimizeButton.element.textContent = "□";
+    }
+
+    public maximize() {
+        this.setStyle({ cursor: "pointer" });
+        this.minimizeButton.element.textContent = "_";
+    }
+
     private onMouseDown(event: any) {
         if (!event || event.button !== 0) {
             return;
@@ -104,22 +114,6 @@ export class WindowBar extends Component {
             x: event.pageX - pos.x,
             y: event.pageY - pos.y,
         };
-    }
-
-    private minimize() {
-        if (this.window.minimized) {
-            this.maximize();
-            return;
-        }
-        this.setStyle({ cursor: "default" });
-        this.minimizeButton.element.textContent = "□";
-        this.window.minimize();
-    }
-
-    private maximize() {
-        this.setStyle({ cursor: "pointer" });
-        this.minimizeButton.element.textContent = "_";
-        this.window.maximize();
     }
 
     private createButtons() {
@@ -136,7 +130,7 @@ export class WindowBar extends Component {
         };
 
         if (!hideMinimize) {
-            this.minimizeButton = createButton("_", "minimize", this.minimize);
+            this.minimizeButton = createButton("_", "minimize", this.window.minimize);
             buttons.push(this.minimizeButton);
         }
 

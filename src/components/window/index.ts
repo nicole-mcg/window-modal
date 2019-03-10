@@ -101,11 +101,17 @@ export class WindowModal extends Component {
     }
 
     public minimize() {
+        if (this.minimized) {
+            this.maximize();
+            return;
+        }
+
         this.setStyle({
             transition: "all 0.5s ease",
             width: "200px", height: "25px",
             left: "0px", top: "0px",
         });
+        this.windowBar.minimize();
         this._minimized = true;
     }
 
@@ -114,6 +120,7 @@ export class WindowModal extends Component {
         this.updateElement();
         setTimeout(() => {
             this.setStyle({ transition: "all 0.05s ease" });
+            this.windowBar.maximize();
             this._minimized = false;
             callback && callback();
         }, 600);

@@ -45,7 +45,7 @@ describe("WindowBar", () => {
 
         windowBar.minimize = jest.fn();
         windowBar.minimizeButton.element.click();
-        expect(windowBar.minimize).toHaveBeenCalled;
+        expect(windowStub.minimize).toHaveBeenCalled;
         windowBar.closeButton.element.click();
         expect(windowStub.destroy).toHaveBeenCalled;
     });
@@ -152,7 +152,6 @@ describe("WindowBar", () => {
 
         expect(windowBar.setStyle).toHaveBeenCalledWith({ cursor: "default" });
         expect(windowBar.minimizeButton.element.textContent).toEqual("□");
-        expect(windowStub.minimize).toHaveBeenCalled();
     });
 
     it("can maximize", () => {
@@ -161,7 +160,6 @@ describe("WindowBar", () => {
 
         expect(windowBar.setStyle).toHaveBeenCalledWith({ cursor: "pointer" });
         expect(windowBar.minimizeButton.element.textContent).toEqual("_");
-        expect(windowStub.maximize).toHaveBeenCalled();
     });
 
 });

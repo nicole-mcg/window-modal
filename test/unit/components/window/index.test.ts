@@ -13,6 +13,8 @@ describe("WindowModal", () => {
         clearMouseState: jest.fn(),
         onMouseMove: jest.fn(),
         moving: false,
+        minimize: jest.fn(),
+        maximize: jest.fn(),
     };
     const resizeHandler = {
         clearMouseState: jest.fn(),
@@ -136,13 +138,19 @@ describe("WindowModal", () => {
             left: "0px", top: "0px",
         });
         expect(windowModal.minimized).toBe(true);
+        expect(windowBar.minimize).toHaveBeenCalled();
     });
 
     it("can be maximized", (done) => {
         windowModal.setStyle = jest.fn();
         windowModal.maximize(done);
         expect(windowModal.setStyle).toHaveBeenCalledWith({ bottom: null });
-        expect(windowModal.minimized).toBe(false);
+
+        setTimeout(() => {
+            expect(windowModal.minimized).toBe(false);
+            expect(windowBar.maximize).toHaveBeenCalled();
+            done();
+        }, 700);
     });
 
     it("can clear mouse state", () => {
