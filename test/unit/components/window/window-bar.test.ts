@@ -3,6 +3,7 @@ import { Button } from "@src/components/button";
 import * as div from "@src/components/div";
 import { WindowBar } from "@src/components/window/window-bar";
 import { createWindowStub } from "./test-util";
+import { WindowIcon } from "@src/components/window/icon";
 
 const { Div } = div;
 
@@ -58,6 +59,28 @@ describe("WindowBar", () => {
         });
 
         expect(windowBar.element.className).toEqual("WindowModal-bar WindowModal-bar--compact");
+    });
+
+    it("can display an icon", () => {
+        const iconElement = new Div(["test"])
+            .withClassname("custom-class").element;
+        const icon = { element: iconElement.cloneNode(true) as HTMLElement };
+        windowBar = new WindowBar({
+            ...options,
+            icon,
+        });
+
+        iconElement.className += " WindowModal-icon";
+        expect(windowBar.element).toEqual((
+            new Div([
+                new Div([iconElement, title]).withClassname("WindowModal-title") as any,
+                new Div().withClassname("WindowModal-bar-spacer") as any,
+                new Div([
+                    new Button(["_"], "minimize"),
+                    new Button(["✖"], "close"),
+                ]).withClassname("WindowModal-buttons"),
+            ]).withClassname("WindowModal-bar ")
+        ).element);
     });
 
     it("can hide minimize button", () => {

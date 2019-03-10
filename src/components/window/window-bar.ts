@@ -1,12 +1,14 @@
 import { Component } from "@component";
 import { WindowModal } from "@components/window";
-import { IPoint } from "@src/interfaces";
+import { IPoint, IRenderable } from "@src/interfaces";
 import autoBind from "auto-bind";
 import { Button } from "../button";
 import { Div } from "../div";
+import { WindowIcon } from "./icon";
 import { IWindowBarOptions } from "./interfaces";
 
 export class WindowBar extends Component {
+    protected icon: WindowIcon;
     protected minimizeButton: Button;
     protected closeButton: Button;
 
@@ -24,6 +26,7 @@ export class WindowBar extends Component {
         this.window = options.window;
 
         this.element = null as any;
+        this.icon = null as any;
         this.minimizeButton = null as any;
         this.closeButton = null as any;
 
@@ -38,9 +41,19 @@ export class WindowBar extends Component {
             compact,
         } = options;
 
+        if (options.icon) {
+            this.icon = new WindowIcon(options.icon);
+        }
+
+        const titleChildren: IRenderable[] = [title];
+
+        if (this.icon) {
+            titleChildren.unshift(this.icon);
+        }
+
         const classname = compact ? "WindowModal-bar--compact" : "";
         const ele = new Div([
-            new Div([title]).withClassname("WindowModal-title"),
+            new Div(titleChildren).withClassname("WindowModal-title"),
             new Div().withClassname("WindowModal-bar-spacer"),
             new Div(this.createButtons()).withClassname("WindowModal-buttons"),
         ]).withClassname(`WindowModal-bar ${classname}`);

@@ -80,6 +80,7 @@ export class Component {
                     return;
                 }
             } catch { /**/ }
+
             if (child instanceof HTMLElement || child instanceof Node) {
                 element.appendChild(child);
                 return;
