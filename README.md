@@ -61,3 +61,7 @@
     const windowModal = new WindowModal(options)
 ```
 </details>
+
+## Options
+
+Coming soon!
