@@ -30,7 +30,7 @@
 
 <details>
     <summary>
-        CDN
+        <h3>CDN</h3>
     </summary>
     
 ```xml
@@ -42,13 +42,12 @@
     
 </details>
 
-<details>
+<details open>
     <summary>
-        npm
+        <h3>npm</h3>
     </summary>
-```
-    npm install window-modal
-```
+
+`npm install window-modal`
     
 ```javascript
     import WindowModal from "window-modal";
