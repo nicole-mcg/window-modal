@@ -9,7 +9,7 @@
     <br>
     <img src="https://user-images.githubusercontent.com/20328954/54089282-d78e3d00-433d-11e9-802e-5c404283cc4a.png"/>
     <br>
-    Features and improvement suggestions welcome!
+    Feature and improvement suggestions welcome!
 </p>
 
 ## Features
