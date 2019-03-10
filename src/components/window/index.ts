@@ -48,6 +48,14 @@ export class WindowModal extends Component {
         super();
         autoBind(this);
 
+        if (options.pos) {
+            this._pos = options.pos;
+        }
+
+        if (options.size) {
+            this._size = options.size;
+        }
+
         const { elementSelector } = options;
         let element: any;
         if (elementSelector) {
@@ -69,6 +77,7 @@ export class WindowModal extends Component {
         this.addChild(this.content);
 
         this.updateElement();
+
         window.addEventListener("mouseup", this.onMouseUp);
         window.addEventListener("mousemove", this.onMouseMove);
         window.addEventListener("select", this.onSelectStart);

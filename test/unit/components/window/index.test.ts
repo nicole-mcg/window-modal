@@ -107,6 +107,26 @@ describe("WindowModal", () => {
         expect(document.contains(windowModal.element)).toBe(false);
     });
 
+    it("can have initial size", () => {
+        const size = {
+            x: 450,
+            y: 600,
+        };
+        const options: any = { title, size };
+        const windowModal: any = new WindowModal(options);
+        expect(windowModal.size).toEqual(size);
+    });
+
+    it("can have initial pos", () => {
+        const pos = {
+            x: 450,
+            y: 600,
+        };
+        const options: any = { title, pos };
+        const windowModal: any = new WindowModal(options);
+        expect(windowModal.pos).toEqual(pos);
+    });
+
     it("can be minimized", () => {
         windowModal.setStyle = jest.fn();
         windowModal.minimize();
