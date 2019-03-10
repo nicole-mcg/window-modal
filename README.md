@@ -25,7 +25,7 @@
 - Minimize
 - Close
 - Scrollable
-- Customizable style
+- Customizable style (override styles with classnames, may have to use `!important`)
 - Many options!
 
 ## Setup
