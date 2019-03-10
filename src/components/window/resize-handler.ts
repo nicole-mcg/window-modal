@@ -27,7 +27,7 @@ export class WindowResizeHandler {
     }
 
     onMouseDown(event: any) {
-        if (!event) {
+        if (!event || !this.window.resizable) {
             return;
         }
         const { window } = this;
@@ -49,7 +49,7 @@ export class WindowResizeHandler {
 
     onMouseMove(event: any) {
         const { minimized, resizing } = this.window;
-        if (minimized) {
+        if (minimized || !this.window.resizable) {
             return;
         }
         const { window, wasResizeCursor: wasResizing } = this;

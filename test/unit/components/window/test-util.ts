@@ -16,6 +16,8 @@ export function createWindowStub(element?: HTMLElement): any {
         destroy: jest.fn(),
         minimize: jest.fn(),
         unminimize: jest.fn(),
+        resizable: true,
+        movable: true,
     };
 }
 

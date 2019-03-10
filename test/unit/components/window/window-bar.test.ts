@@ -159,6 +159,35 @@ describe("WindowBar", () => {
         expect(windowBar.moving).toBe(false);
     });
 
+    it("can't be moved when window 'movable' is false", () => {
+        const originalPos = { ...windowStub.pos };
+        const mouseDownEvent = {
+            button: 0,
+            pageX: windowStub.pos.x + 20,
+            pageY: windowStub.pos.y + 5,
+        };
+
+        windowStub.movable = false;
+
+        windowBar.onMouseDown(mouseDownEvent);
+        expect(windowBar.moving).toBe(false);
+
+        const mouseMoveEvent = {
+            pageX: mouseDownEvent.pageX + 2,
+            pageY: mouseDownEvent.pageY + 2,
+            preventDefault: jest.fn(),
+        };
+
+        windowStub.movable = true;
+        windowBar.onMouseDown(mouseDownEvent);
+        expect(windowBar.moving).toBe(true);
+
+        windowStub.movable = false;
+        windowBar.onMouseMove(mouseMoveEvent);
+
+        expect(windowStub.pos).toEqual(originalPos);
+    });
+
     it("can minimize", () => {
         windowBar.setStyle = jest.fn();
         windowBar.minimize();

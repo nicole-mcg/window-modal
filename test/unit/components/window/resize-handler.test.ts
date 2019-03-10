@@ -70,6 +70,29 @@ describe("WindowResizeHandler", () => {
         expect(event.preventDefault).toHaveBeenCalled();
     });
 
+    it("can't be resized when window 'resizable' is false", () => {
+        const { pos, size } = windowStub;
+        const originalSize = { ...size };
+        windowStub.resizable = false;
+        windowStub.mousePos.x = pos.x + size.x;
+        windowStub.mousePos.y = pos.y + size.y;
+        let event = createEventStub(windowElement);
+
+        resizeHandler.onMouseDown(event);
+        expect(resizeHandler.resizing).toBe(false);
+
+        windowStub.resizable = true;
+        resizeHandler.onMouseDown(event);
+        expect(resizeHandler.resizing).toBe(true);
+
+        windowStub.resizable = false;
+        windowStub.mousePos.x = pos.x + size.x + 2;
+        windowStub.mousePos.y = pos.y + size.y + 2;
+        event = createEventStub(windowElement);
+        resizeHandler.onMouseMove(event);
+        expect(windowStub.size).toEqual(originalSize);
+    });
+
     it("can stop resizing", () => {
         resizeHandler.lastResizePos = { x: 0, y: 0 };
         expect(resizeHandler.resizing).toBe(true);

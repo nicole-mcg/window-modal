@@ -22,16 +22,26 @@ export class WindowModal extends Component {
         this._pos = pos;
         this.updateElement();
     }
-
-    public get moving() { return this.windowBar.moving; }
-    public get resizing() { return Boolean(this.resizeHandler.resizing); }
-    public get minimized() { return this._minimized; }
-    public get unminimized() { return !this._minimized; }
     public get focused() { return this._focused; }
     public set focused(focused: boolean) {
         this._focused = focused;
         this.updateElement();
     }
+    public get resizable() { return this._resizable; }
+    public set resizable(resizable: boolean) {
+        this._resizable = resizable;
+        this.updateElement();
+    }
+    public get movable() { return this._movable; }
+    public set movable(movable: boolean) {
+        this._movable = movable;
+        this.updateElement();
+    }
+
+    public get moving() { return this.windowBar.moving; }
+    public get resizing() { return Boolean(this.resizeHandler.resizing); }
+    public get minimized() { return this._minimized; }
+    public get unminimized() { return !this._minimized; }
 
     protected content: Component | null;
     protected windowBar: WindowBar;
@@ -40,6 +50,8 @@ export class WindowModal extends Component {
     private _size: IPoint = { x: MIN_WINDOW_SIZE, y: MIN_WINDOW_SIZE };
     private _minimized: boolean = false;
     private _pos: IPoint = Point.zero;
+    private _resizable: boolean = true;
+    private _movable: boolean = true;
     private _focused: boolean = true;
 
     private _mousePos: IPoint = Point.zero;

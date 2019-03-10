@@ -74,7 +74,7 @@ export class WindowBar extends Component {
     public onMouseMove(event: any) {
         const { moving, window, _moveStartPos } = this;
 
-        if (!moving || !_moveStartPos) {
+        if (!moving || !_moveStartPos || !this.window.movable) {
             return;
         }
 
@@ -104,7 +104,7 @@ export class WindowBar extends Component {
     }
 
     private onMouseDown(event: any) {
-        if (!event || event.button !== 0 || this.window.minimized) {
+        if (!event || event.button !== 0 || !this.window.movable || this.window.minimized) {
             return;
         }
 
