@@ -6,7 +6,7 @@ The `WindowModal` class has a number of properties and functions which you can u
 
 ## Properties
 
-| Name | Type | Can be modified? | Description |
+| Name | Type | Can be set? | Description |
 | ------------- | ------------- | ------------- | ------------- |
 | size | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [x] </li></ul>  | The size of the window |
 | pos | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [x] </li></ul>  | The location of the window `left: pos.x; top: pos.y` |
