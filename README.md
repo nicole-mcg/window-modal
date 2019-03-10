@@ -33,12 +33,12 @@
         CDN
     </summary>
     
-    ```html
+```html
     <script src="https://cdn.jsdelivr.net/npm/window-modal/build/index.js"/>
     <script>
         var windowModal = new WindowModal(options);
     </script>
-    ```
+```
     
 </details>
 
@@ -47,11 +47,11 @@
         npm
     </summary>
     `npm install window-modal`
-    ```javascript
+```javascript
     import WindowModal from "window-modal";
     
     // const WindowModal = require("window-modal");
     
     const windowModal = new WindowModal(options)
-    ```
+```
 </details>
