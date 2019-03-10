@@ -8,6 +8,7 @@ The `WindowModal` class has a number of properties and functions which you can u
 
 | Name | Type | Can be set? | Description |
 | ------------- | ------------- | ------------- | ------------- |
+| title | string | <ul><li>- [x] </li></ul>  | The title for the window |
 | size | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [x] </li></ul>  | The size of the window |
 | pos | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [x] </li></ul>  | The location of the window `left: pos.x; top: pos.y` |
 | focused | boolean | <ul><li>- [x] </li></ul>  | True if the window element has focus |
