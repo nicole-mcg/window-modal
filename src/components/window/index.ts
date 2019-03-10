@@ -197,17 +197,19 @@ export class WindowModal extends Component {
         if (!element) {
             throw new Error("Could not find element for window. Selector: " + elementSelector);
         }
-        const contentEle = document.createElement("div");
-        const content = new Div([contentEle]);
 
         if (element.parent) {
             element.remove();
         }
-        document.body.appendChild(element);
 
-        contentEle.innerHTML = element.innerHTML;
+        const contentEle = element.cloneNode(true);
+        const content = new Div([contentEle]);
+
+        element.style = "";
+        element.className = "";
         element.innerHTML = "";
 
+        document.body.appendChild(element);
         this.content = content;
         return element;
     }
