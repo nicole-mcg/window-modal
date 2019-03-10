@@ -63,6 +63,7 @@ export class WindowModal extends Component {
             element = this.hijackElement(elementSelector);
         } else {
             element = document.createElement("div");
+            document.body.appendChild(element);
             this.content = null;
         }
 
