@@ -19,7 +19,7 @@ The `WindowModal` class has a number of properties and functions which you can u
 
 | Name | Description |
 | ------------- | ------------- |
-| minimize | Minimizes the window |
-| unminimize | Unminimizes the window |
-| clearMouseState | Cancels resizing/moving the window |
-| updateElement | Updates the HTML element with the classes properties |
+| minimize() | Minimizes the window |
+| unminimize(callback?: Function) | Unminimizes the window |
+| clearMouseState() | Cancels resizing/moving the window |
+| updateElement() | Updates the HTML element with the classes properties (pos, size, etc) |
