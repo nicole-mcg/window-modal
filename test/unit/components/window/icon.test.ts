@@ -62,4 +62,3 @@ describe("WindowIcon", () => {
 
 });
 // tslint:enable:no-console
-
