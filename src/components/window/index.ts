@@ -140,7 +140,7 @@ export class WindowModal extends Component {
         });
     }
 
-    onMouseEnter(event: any) {
+    private onMouseEnter(event: any) {
         if (event.buttons === 0) {
             this.clearMouseState();
         }
