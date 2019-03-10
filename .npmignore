@@ -1,10 +1,12 @@
 src
 test
+docs
 
 tsconfig.json
 tslint.json
 jest.config.jest
 webpack.config.js
 
+.babelrc
 .gitignore
 .travis.yml
