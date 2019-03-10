@@ -40,6 +40,11 @@
     "watch": "webpack --watch",
     "lint": "tslint -p ./tsconfig.json"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/nik-m2/window-modal"
+  },
+  "bugs": "https://github.com/nik-m2/window-modal/issues",
   "keywords": [
     "window",
     "modal",
