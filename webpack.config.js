@@ -27,9 +27,6 @@ module.exports = {
         test: /\.(less|css)$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
             loader: 'css-loader' // translates CSS into CommonJS
           },
           {
