@@ -44,7 +44,7 @@ export class WindowModal extends Component {
 
     private _mousePos: IPoint = Point.zero;
 
-    constructor(options: IWindowModalOptions) {
+    constructor(options: IWindowModalOptions = { title: "" }) {
         super();
         autoBind(this);
 
