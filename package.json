@@ -1,6 +1,6 @@
 {
   "name": "window-modal",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A mini window in your browser that can move, resize, minimize, and more!",
   "main": "build/index.js",
   "dependencies": {
@@ -41,8 +41,8 @@
     "lint": "tslint -p ./tsconfig.json"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/nik-m2/window-modal"
+    "type": "git",
+    "url": "https://github.com/nik-m2/window-modal"
   },
   "bugs": "https://github.com/nik-m2/window-modal/issues",
   "keywords": [
