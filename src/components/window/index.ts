@@ -68,6 +68,7 @@ export class WindowModal extends Component {
         }
 
         this.element = element;
+        this.setStyle({ position: "absolute" });
         this.element.className = "WindowModal";
         this.resizeHandler = new WindowResizeHandler(this);
 
