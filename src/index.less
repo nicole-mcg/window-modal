@@ -1,17 +1,18 @@
 
 .WindowModal {
+    display: flex;
+    flex-direction: column;
     transition: all 0.05s ease;
     position: absolute;
     background-color: white;
     padding: 0;
     box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: none;
 
     &-content {
+        position: relative;
+        display: flex;
         padding: 0 4px;
-        width: calc(100% - 8px);
-        height: calc(100% - 32px);
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -19,6 +20,7 @@
     &-title {
         margin: 4px;
         font-weight: bold;
+        font-size: 14px;
     }
 
     &-buttons {
@@ -27,6 +29,7 @@
 
     &-bar {
         display: flex;
+        flex-basis: 48px;
         justify-content: center;
         align-items: center;
         flex-direction: row;
@@ -41,6 +44,29 @@
         &-spacer {
             flex-grow: 10;
         }
+
+        &--compact {
+            padding: 1px;
+            flex-basis: 32px;
+            height: 16px;
+
+            & .WindowModal-button {
+                padding: 0px;
+                margin: 0 1px;
+                font-size: 8px;
+                width: 16px;
+                height: 16px;
+
+                &s {
+                    padding: 0;
+                }
+            }
+
+            & .WindowModal-title {
+                font-size: 12px;
+                margin: 0 2px;
+            }
+        }
     }
 
     &-button {
@@ -49,7 +75,7 @@
         align-items: center;
         width: 24px;
         height: 24px;
-        padding: 4px;
+        padding: 2px;
         margin: 0 2px;
         background-color: #FDFDFD;
         cursor: pointer;
