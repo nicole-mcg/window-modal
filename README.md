@@ -56,6 +56,8 @@
 const WindowModal = require("window-modal");
 ```
 
+or
+
 ```javascript
 import WindowModal from "window-modal";
 ```
