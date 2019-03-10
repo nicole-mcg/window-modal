@@ -32,7 +32,8 @@
     <summary style="display:inline-block;">
         <b>CDN</b>
     </summary>
-    
+    <br/>
+
 ```xml
     <script src="https://cdn.jsdelivr.net/npm/window-modal/build/index.js"/>
     <script>
@@ -48,6 +49,7 @@
     <summary>
         <b>npm</b>
     </summary>
+    <br/>
 
 `npm install window-modal`
     
