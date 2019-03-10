@@ -154,7 +154,9 @@ export class WindowModal extends Component {
         const contentEle = document.createElement("div");
         const content = new Div([contentEle]);
 
-        element.remove();
+        if (element.parent) {
+            element.remove();
+        }
         document.body.appendChild(element);
 
         contentEle.innerHTML = element.innerHTML;

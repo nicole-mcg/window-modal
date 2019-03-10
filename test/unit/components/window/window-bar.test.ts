@@ -43,6 +43,12 @@ describe("WindowBar", () => {
             ]).classname("WindowModal-bar ") as Component
         ).element);
         expect(HTMLElement.prototype.addEventListener).toHaveBeenCalledWith("mousedown", windowBar.onMouseDown);
+
+        windowBar.minimize = jest.fn();
+        windowBar.minimizeButton.element.click();
+        expect(windowBar.minimize).toHaveBeenCalled;
+        windowBar.closeButton.element.click();
+        expect(windowStub.destroy).toHaveBeenCalled;
     });
 
     it("can be compact", () => {

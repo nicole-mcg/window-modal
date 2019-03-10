@@ -1,11 +1,11 @@
 import { Component } from "@component";
-import { Button } from "@components/button";
 import { Div } from "@src/components/div";
 import { WindowModal } from "@src/components/window";
 import * as resize from "@src/components/window/resize-handler";
 import * as bar from "@src/components/window/window-bar";
 import { addPx } from "@src/util";
 import { createEventStub } from "./test-util";
+import { Button } from "@src/components/button";
 
 describe("WindowModal", () => {
     const title = "test title";
@@ -71,19 +71,19 @@ describe("WindowModal", () => {
     });
 
     it("can be created with a selector", () => {
-        const contentEle = new Div(["test"]).element;
-        (document.querySelector as any).mockReturnValue(contentEle);
+        const contentEle = new Div().element;
+        contentEle.innerHTML = "test";
+        (document.querySelector as any).mockReturnValue(contentEle.cloneNode(true));
         const query = "#content-ele";
         const windowModal: any = new WindowModal({ title, elementSelector: query });
         expect(windowModal).toBeTruthy();
 
-        const element = windowModal.element;
         const expectedElement = (
             new Div([
                 new Div([
-                    new Div([contentEle]),
+                    new Div([ contentEle ]),
                 ]).classname("WindowModal-content"),
-            ]).classname("WindowModal") as Div
+            ]).classname("WindowModal") as Component
         );
 
         const { pos, size } = windowModal;
@@ -92,7 +92,7 @@ describe("WindowModal", () => {
             left: addPx(pos.x), top: addPx(pos.y),
             width: addPx(size.x), height: addPx(size.y),
         });
-        expect(element).toEqual(expectedElement.element);
+        expect(windowModal.element).toEqual(expectedElement.element);
     });
 
     it("can be destroyed", () => {

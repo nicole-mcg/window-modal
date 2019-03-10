@@ -128,7 +128,7 @@ export class WindowBar extends Component {
         }
 
         if (!hideClose) {
-            this.closeButton = createButton("✖", "close");
+            this.closeButton = createButton("✖", "close", this.window.destroy);
             buttons.push(this.closeButton);
         }
 

@@ -13,6 +13,7 @@ export class Component {
     constructor(children: IRenderable[]= []) {
         autoBind(this);
         this.children = children;
+        this.element = document.createElement("div");
     }
 
     public setParent(parent: Component) {
