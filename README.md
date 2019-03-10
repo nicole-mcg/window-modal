@@ -33,7 +33,7 @@
         CDN
     </summary>
     
-```html
+```xml
     <script src="https://cdn.jsdelivr.net/npm/window-modal/build/index.js"/>
     <script>
         var windowModal = new WindowModal(options);
@@ -47,6 +47,7 @@
         npm
     </summary>
     `npm install window-modal`
+    
 ```javascript
     import WindowModal from "window-modal";
     
