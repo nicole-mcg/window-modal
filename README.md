@@ -16,6 +16,7 @@
 
 - Pure JS (Written in TypeScript)
 - Designed to be used in vanilla JS, or wrapped by front end frameworks (React, Vue, etc)
+- Highly tested
 - Movable
 - Resizable
 - Titles (with icons)
@@ -24,3 +25,33 @@
 - Scrollable
 - Customizable style
 - Many options!
+
+## Usage
+
+<details>
+    <summary>
+        CDN
+    </summary>
+    
+    ```html
+    <script src="https://cdn.jsdelivr.net/npm/window-modal/build/index.js"/>
+    <script>
+        var windowModal = new WindowModal(options);
+    </script>
+    ```
+    
+</details>
+
+<details>
+    <summary>
+        npm
+    </summary>
+    `npm install window-modal`
+    ```javascript
+    import WindowModal from "window-modal";
+    
+    // const WindowModal = require("window-modal");
+    
+    const windowModal = new WindowModal(options)
+    ```
+</details>
