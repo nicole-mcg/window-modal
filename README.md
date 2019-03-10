@@ -15,7 +15,7 @@
 ## Features
 
 - Pure JS
-- Designed to be wrappable by front end frameworks (React, Vue)
+- Designed to be wrappable by front end frameworks (React, Vue, etc)
 - Movable
 - Resizable
 - Titles (with icons)
