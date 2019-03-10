@@ -69,7 +69,7 @@ export class WindowModal extends Component {
         this._title = "";
         if (options.title) {
             if (typeof options.title !== "string") {
-                throw new Error("Invalid elementSelector specified for window-modal: " + elementSelector);
+                throw new Error("Invalid elementSelector specified for window-modal: " + options.title);
             }
             this._title = options.title;
         }
