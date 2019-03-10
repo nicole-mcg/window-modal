@@ -68,7 +68,7 @@ import WindowModal from "window-modal";
 ## Usage
 
 ```
-const windowModal = new WindowModal(options);
+new WindowModal(options);
 ```
 
 - [Options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)
