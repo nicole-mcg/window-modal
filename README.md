@@ -46,7 +46,9 @@
     <summary>
         npm
     </summary>
-    `npm install window-modal`
+```
+    npm install window-modal
+```
     
 ```javascript
     import WindowModal from "window-modal";
