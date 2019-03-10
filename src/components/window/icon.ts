@@ -6,6 +6,10 @@ export class WindowIcon extends Component {
 
     public static createIcon(icon: IWindowIcon): HTMLElement {
 
+        if (typeof icon !== "object") {
+            throw new Error("Invalid 'icon' specified in window-modal settings");
+        }
+
         const className = " WindowModal-icon";
         if (icon.element) {
 
