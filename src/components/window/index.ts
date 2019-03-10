@@ -48,7 +48,7 @@ export class WindowModal extends Component {
     public get minimized() { return this._minimized; }
     public get unminimized() { return !this._minimized; }
 
-    protected content: Component | null;
+    protected content: Component;
     protected windowBar: WindowBar;
     protected resizeHandler: WindowResizeHandler;
 
@@ -61,6 +61,8 @@ export class WindowModal extends Component {
     private _focused: boolean = true;
 
     private _mousePos: IPoint = Point.zero;
+
+    private _oldContentDisplay: string;
 
     constructor(options: IWindowModalOptions = {}) {
         super();
@@ -109,7 +111,7 @@ export class WindowModal extends Component {
         } else {
             element = document.createElement("div");
             document.body.appendChild(element);
-            this.content = null;
+            this.content = new Div();
         }
 
         this.element = element;
@@ -119,8 +121,9 @@ export class WindowModal extends Component {
         this.windowBar = new WindowBar({ window: this, ...options });
         this.addChild(this.windowBar);
 
-        this.content = new Div([this.content || ""]).withClassname("WindowModal-content");
+        this.content = this.content.withClassname("WindowModal-content");
         this.addChild(this.content);
+        this._oldContentDisplay = this.content.element.style.display || "block";
 
         this.updateElement();
 
@@ -146,7 +149,7 @@ export class WindowModal extends Component {
         delete this.children;
     }
 
-    public minimize() {
+    public minimize(callback?: () => void) {
         if (this.minimized) {
             this.unminimize();
             return;
@@ -154,20 +157,31 @@ export class WindowModal extends Component {
 
         this.setStyle({
             transition: "all 0.5s ease",
-            width: "200px", height: "25px",
-            left: "0px", top: "0px",
+            width: "200px", height: "30px",
+            left: "0px",
+            top: "0px",
+        });
+        this._oldContentDisplay = this.content.element.style.display || "block";
+        this.content.setStyle({
+            display: "none",
         });
         this.windowBar.minimize();
         this._minimized = true;
+        setTimeout(() => {
+            this.setStyle({ height: "auto" });
+        }, 500);
     }
 
     public unminimize(callback?: () => void) {
         this.setStyle({ bottom: null });
+        this.content.setStyle({
+            display: this._oldContentDisplay,
+        });
+        this._minimized = false;
         this.updateElement();
+        this.windowBar.unminimize();
         setTimeout(() => {
             this.setStyle({ transition: "all 0.05s ease" });
-            this.windowBar.unminimize();
-            this._minimized = false;
             callback && callback();
         }, 600);
     }
@@ -178,7 +192,10 @@ export class WindowModal extends Component {
     }
 
     public updateElement() {
-        const { pos, size } = this;
+        const { pos, size, minimized } = this;
+        if (minimized) {
+            return;
+        }
         this.setStyle({
             zIndex: this.focused ? "1" : "0",
             left: addPx(pos.x), top: addPx(pos.y),
