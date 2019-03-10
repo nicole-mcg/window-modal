@@ -26,7 +26,7 @@
 - Customizable style
 - Many options!
 
-## Usage
+## Setup/Usage
 
 <details>
     <summary style="display:inline-block;">
