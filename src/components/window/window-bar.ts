@@ -81,7 +81,7 @@ export class WindowBar extends Component {
     }
 
     private onMouseDown(event: any) {
-        if (!event) {
+        if (!event || event.button !== 0) {
             return;
         }
 

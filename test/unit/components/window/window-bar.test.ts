@@ -103,7 +103,11 @@ describe("WindowBar", () => {
             y: windowStub.pos.y + 5,
         };
 
-        const mouseDownEvent = { pageX: clickPos.x, pageY: clickPos.y };
+        const mouseDownEvent = {
+            button: 0,
+            pageX: clickPos.x,
+            pageY: clickPos.y,
+        };
         const mouseMoveEvent = {
             pageX: clickPos.x + moveDistX,
             pageY: clickPos.y + moveDistY,
