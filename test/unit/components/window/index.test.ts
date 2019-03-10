@@ -49,7 +49,7 @@ describe("WindowModal", () => {
         const element = windowModal.element;
         const expectedElement = (
             new Div([
-                new Div([""]).withClassname("WindowModal-content"),
+                new Div().withClassname("WindowModal-content"),
             ]).withClassname("WindowModal")
         );
         const { pos, size } = windowModal;
@@ -64,7 +64,8 @@ describe("WindowModal", () => {
 
         expect(bar.WindowBar).toHaveBeenCalledWith({ window: windowModal, ...options });
 
-        expect(windowModal.content.children).toEqual([""]);
+        expect(windowModal.content.children).toEqual([]);
+        expect(windowModal.content.element.children).toHaveLength(0);
 
         expect(window.addEventListener).toHaveBeenCalledWith("mouseup", windowModal.onMouseUp);
         expect(window.addEventListener).toHaveBeenCalledWith("mousemove", windowModal.onMouseMove);
@@ -73,18 +74,15 @@ describe("WindowModal", () => {
     });
 
     it("can be created with a selector", () => {
-        const contentEle = new Div().element;
-        contentEle.innerHTML = "test";
-        (document.querySelector as any).mockReturnValue(contentEle.cloneNode(true));
+        const contentEle = new Div(["test"]);
+        (document.querySelector as any).mockReturnValue(contentEle.element.cloneNode(true));
         const query = "#content-ele";
         const windowModal: any = new WindowModal({ title, elementSelector: query });
         expect(windowModal).toBeTruthy();
 
         const expectedElement = (
             new Div([
-                new Div([
-                    new Div([ contentEle ]),
-                ]).withClassname("WindowModal-content"),
+                new Div([ contentEle ]).withClassname("WindowModal-content"),
             ]).withClassname("WindowModal")
         );
 
@@ -185,7 +183,7 @@ describe("WindowModal", () => {
         windowModal.minimize();
         expect(windowModal.setStyle).toHaveBeenCalledWith({
             transition: "all 0.5s ease",
-            width: "200px", height: "25px",
+            width: "200px", height: "30px",
             left: "0px", top: "0px",
         });
         expect(windowModal.minimized).toBe(true);
