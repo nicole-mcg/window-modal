@@ -15,6 +15,7 @@ describe("WindowModal", () => {
         moving: false,
         minimize: jest.fn(),
         unminimize: jest.fn(),
+        setTitle: jest.fn(),
     };
     const resizeHandler = {
         clearMouseState: jest.fn(),
@@ -153,6 +154,12 @@ describe("WindowModal", () => {
         const options: any = { title };
         const windowModal: any = new WindowModal(options);
         expect(windowModal.movable).toBe(true);
+    });
+
+    it("can set title ", () => {
+        const newTitle = "test";
+        windowModal.title = newTitle;
+        expect(windowBar.setTitle).toHaveBeenCalledWith(newTitle);
     });
 
     it("can be minimized", () => {

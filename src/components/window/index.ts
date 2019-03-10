@@ -37,6 +37,11 @@ export class WindowModal extends Component {
         this._movable = movable;
         this.updateElement();
     }
+    public get title() { return this._title; }
+    public set title(title: string) {
+        this.windowBar.setTitle(title);
+        this._title = title;
+    }
 
     public get moving() { return this.windowBar.moving; }
     public get resizing() { return Boolean(this.resizeHandler.resizing); }
@@ -47,6 +52,7 @@ export class WindowModal extends Component {
     protected windowBar: WindowBar;
     protected resizeHandler: WindowResizeHandler;
 
+    private _title: string;
     private _size: IPoint = { x: MIN_WINDOW_SIZE, y: MIN_WINDOW_SIZE };
     private _minimized: boolean = false;
     private _pos: IPoint = Point.zero;
@@ -59,6 +65,7 @@ export class WindowModal extends Component {
     constructor(options: IWindowModalOptions = { title: "" }) {
         super();
         autoBind(this);
+        this._title = options.title;
 
         if (options.pos) {
             this._pos = options.pos;

@@ -204,4 +204,11 @@ describe("WindowBar", () => {
         expect(windowBar.minimizeButton.element.textContent).toEqual("_");
     });
 
+    it("can set title", () => {
+        const title = "testing 123";
+        windowBar.setTitle(title);
+
+        expect(windowBar.title.element).toHaveProperty("textContent", title);
+    });
+
 });

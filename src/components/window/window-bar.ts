@@ -10,6 +10,7 @@ import { IWindowBarOptions } from "./interfaces";
 export class WindowBar extends Component {
     public get moving() { return Boolean(this._moveStartPos); }
     protected icon: WindowIcon;
+    protected title: Div;
     protected minimizeButton: Button;
     protected closeButton: Button;
 
@@ -27,6 +28,7 @@ export class WindowBar extends Component {
 
         this.element = null as any;
         this.icon = null as any;
+        this.title = null as any;
         this.minimizeButton = null as any;
         this.closeButton = null as any;
 
@@ -52,8 +54,9 @@ export class WindowBar extends Component {
         }
 
         const classname = compact ? "WindowModal-bar--compact" : "";
+        this.title = new Div(titleChildren).withClassname("WindowModal-title");
         const ele = new Div([
-            new Div(titleChildren).withClassname("WindowModal-title"),
+            this.title,
             new Div().withClassname("WindowModal-bar-spacer"),
             new Div(this.createButtons()).withClassname("WindowModal-buttons"),
         ]).withClassname(`WindowModal-bar ${classname}`);
@@ -91,6 +94,10 @@ export class WindowBar extends Component {
         window.pos = newPos;
 
         event.preventDefault();
+    }
+
+    public setTitle(title: string) {
+        this.title.element.textContent = title;
     }
 
     public minimize() {
