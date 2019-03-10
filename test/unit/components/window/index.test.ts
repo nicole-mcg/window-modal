@@ -5,7 +5,6 @@ import * as resize from "@src/components/window/resize-handler";
 import * as bar from "@src/components/window/window-bar";
 import { addPx } from "@src/util";
 import { createEventStub } from "./test-util";
-import { Button } from "@src/components/button";
 
 describe("WindowModal", () => {
     const title = "test title";
