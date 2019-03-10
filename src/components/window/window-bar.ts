@@ -47,7 +47,7 @@ export class WindowBar extends Component {
             this.icon = new WindowIcon(options.icon);
         }
 
-        const titleChildren: IRenderable[] = [title];
+        const titleChildren: IRenderable[] = [title || ""];
 
         if (this.icon) {
             titleChildren.unshift(this.icon);
