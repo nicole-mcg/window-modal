@@ -37,7 +37,7 @@
     <br/>
 
 ```xml
-    <script src="https://cdn.jsdelivr.net/npm/window-modal/build/index.js"/>
+<script src="https://cdn.jsdelivr.net/npm/window-modal/build/index.js"/>
 ```
     
 </details>
@@ -51,9 +51,13 @@
     <br/>
 
 `npm install window-modal`
-    
+
 ```javascript
-    import WindowModal from "window-modal";
+const WindowModal = require("window-modal");
+```
+
+```javascript
+import WindowModal from "window-modal";
 ```
 </details>
 
