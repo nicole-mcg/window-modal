@@ -68,6 +68,16 @@ export class WindowModal extends Component {
             this._size = options.size;
         }
 
+        this.resizable = true;
+        if (options.resizable === false) {
+            this.resizable = false;
+        }
+
+        this.movable = true;
+        if (options.movable === false) {
+            this.resizable = false;
+        }
+
         const { elementSelector } = options;
         let element: any;
         if (elementSelector) {

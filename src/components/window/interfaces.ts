@@ -7,6 +7,8 @@ export interface IWindowModalOptions extends Partial<IWindowBarOptions> {
     elementSelector?: string;
     pos?: IPoint;
     size?: IPoint;
+    resizable?: boolean;
+    movable?: boolean;
 }
 
 export interface IWindowBarOptions {

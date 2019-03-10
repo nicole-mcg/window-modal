@@ -129,6 +129,32 @@ describe("WindowModal", () => {
         expect(windowModal.pos).toEqual(pos);
     });
 
+    it("can take option 'resizable'", () => {
+        const resizable = false;
+        const options: any = { title, resizable };
+        const windowModal: any = new WindowModal(options);
+        expect(windowModal.resizable).toBe(resizable);
+    });
+
+    it("won't set resizable false for undefined", () => {
+        const options: any = { title };
+        const windowModal: any = new WindowModal(options);
+        expect(windowModal.resizable).toBe(true);
+    });
+
+    it("can take option 'movable'", () => {
+        const movable = false;
+        const options: any = { title, movable };
+        const windowModal: any = new WindowModal(options);
+        expect(windowModal.resizable).toBe(movable);
+    });
+
+    it("won't set resizable false for undefined", () => {
+        const options: any = { title };
+        const windowModal: any = new WindowModal(options);
+        expect(windowModal.movable).toBe(true);
+    });
+
     it("can be minimized", () => {
         windowModal.setStyle = jest.fn();
         windowModal.minimize();
