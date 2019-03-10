@@ -26,7 +26,7 @@
 - Customizable style
 - Many options!
 
-## Setup/Usage
+## Setup
 
 <details>
     <summary style="display:inline-block;">
@@ -36,9 +36,6 @@
 
 ```xml
     <script src="https://cdn.jsdelivr.net/npm/window-modal/build/index.js"/>
-    <script>
-        var windowModal = new WindowModal(options);
-    </script>
 ```
     
 </details>
@@ -55,13 +52,14 @@
     
 ```javascript
     import WindowModal from "window-modal";
-    
-    // const WindowModal = require("window-modal");
-    
-    const windowModal = new WindowModal(options)
 ```
 </details>
 
-## Options
+## Usage
 
-Coming soon!
+```
+const windowModal = new WindowModal(options);
+```
+
+[Options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)
+
