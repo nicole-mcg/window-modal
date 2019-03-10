@@ -1,4 +1,4 @@
-# IWindowIcon
+# `IWindowIcon`
 
 This is an interface which is used to specify an icon for the window ([Window Options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)) 
 
