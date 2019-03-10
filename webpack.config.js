@@ -27,6 +27,9 @@ module.exports = {
         test: /\.(less|css)$/,
         use: [
           {
+            loader: 'style-loader'
+          },
+          {
             loader: 'css-loader' // translates CSS into CommonJS
           },
           {
@@ -54,22 +57,10 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    }),
-
     new HtmlWebpackPlugin({
       template: "test/public/index.html",
       // favicon: "assets/favicon.ico",
       hash: true,
     }),
   ],
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    }
-  }
 };
