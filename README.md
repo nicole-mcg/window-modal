@@ -72,5 +72,6 @@ new WindowModal(options);
 ```
 
 - [Options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)
+- [Events](https://github.com/nik-m2/window-modal/blob/master/docs/Events.md)
 - [WindowModal Class](https://github.com/nik-m2/window-modal/blob/master/docs/WindowModal.md)
 
