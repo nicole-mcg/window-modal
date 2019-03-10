@@ -14,7 +14,7 @@
 
 ## Features
 
-- Pure JS
+- Pure JS (Written in TypeScript)
 - Designed to be used in vanilla JS, or wrapped by front end frameworks (React, Vue, etc)
 - Movable
 - Resizable
