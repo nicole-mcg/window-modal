@@ -52,6 +52,8 @@
 
 `npm install window-modal`
 
+then
+
 ```javascript
 const WindowModal = require("window-modal");
 ```
