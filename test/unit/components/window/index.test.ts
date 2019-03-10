@@ -97,6 +97,12 @@ describe("WindowModal", () => {
         expect(windowModal.element).toEqual(expectedElement.element);
     });
 
+    it("will throw error on invalid selector", () => {
+        const elementSelector = {};
+        const options: any = { title, elementSelector };
+        expect(() => new WindowModal(options)).toThrow();
+    });
+
     it("can be destroyed", () => {
         document.body.appendChild(windowModal.element);
 
@@ -130,6 +136,12 @@ describe("WindowModal", () => {
         expect(windowModal.pos).toEqual(pos);
     });
 
+    it("will throw error on invalid initial pos", () => {
+        const pos = "invalid";
+        const options: any = { title, pos };
+        expect(() => new WindowModal(options)).toThrow();
+    });
+
     it("can take option 'resizable'", () => {
         const resizable = false;
         const options: any = { title, resizable };
@@ -160,6 +172,12 @@ describe("WindowModal", () => {
         const newTitle = "test";
         windowModal.title = newTitle;
         expect(windowBar.setTitle).toHaveBeenCalledWith(newTitle);
+    });
+
+    it("will throw error on invalid initial title", () => {
+        const title = {};
+        const options: any = { title };
+        expect(() => new WindowModal(options)).toThrow();
     });
 
     it("can be minimized", () => {
