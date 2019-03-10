@@ -15,7 +15,7 @@ describe("WindowIcon", () => {
 
         const icon = new WindowIcon(iconObj);
 
-        expect(icon.element).toBe(element);
+        expect(icon.element).toBe(withClass(element));
     });
 
     it("can be created with a selector", () => {
@@ -26,7 +26,7 @@ describe("WindowIcon", () => {
 
         const icon = new WindowIcon(iconObj);
 
-        expect(icon.element).toBe(element);
+        expect(icon.element).toBe(withClass(icon.element));
         expect(document.querySelector).toHaveBeenCalledWith(selector);
     });
 
@@ -37,7 +37,7 @@ describe("WindowIcon", () => {
         const icon = new WindowIcon(iconObj);
 
         const expectedElement = new Div([innerHTML]).element;
-        expect(icon.element).toEqual(expectedElement);
+        expect(icon.element).toEqual(withClass(icon.element));
     });
 
     it("can be created with src", () => {
@@ -48,7 +48,7 @@ describe("WindowIcon", () => {
 
         const expectedImage = new Image();
         expectedImage.src = src;
-        expect(icon.element).toEqual(expectedImage);
+        expect(icon.element).toEqual(withClass(icon.element));
     });
 
     it("will print a warning if no options", () => {
@@ -56,9 +56,14 @@ describe("WindowIcon", () => {
 
         const icon = new WindowIcon(iconObj);
 
-        expect(icon.element).toEqual(new Div().element);
+        expect(icon.element).toEqual(withClass(new Div().element));
         expect(console.warn).toHaveBeenCalled();
     });
 
 });
 // tslint:enable:no-console
+
+function withClass(element: HTMLElement) {
+    element.className = "WindowModal-icon";
+    return element;
+}

@@ -34,13 +34,13 @@ describe("WindowBar", () => {
         expect(windowBar.moving).toBe(false);
         expect(windowBar.element).toEqual((
             new Div([
-                new Div([title]).classname("WindowModal-title") as any,
-                new Div().classname("WindowModal-bar-spacer") as any,
+                new Div([title]).withClassname("WindowModal-title") as any,
+                new Div().withClassname("WindowModal-bar-spacer") as any,
                 new Div([
                     new Button(["_"], "minimize"),
                     new Button(["✖"], "close"),
-                ]).classname("WindowModal-buttons"),
-            ]).classname("WindowModal-bar ") as Component
+                ]).withClassname("WindowModal-buttons"),
+            ]).withClassname("WindowModal-bar ")
         ).element);
         expect(HTMLElement.prototype.addEventListener).toHaveBeenCalledWith("mousedown", windowBar.onMouseDown);
 
@@ -68,12 +68,12 @@ describe("WindowBar", () => {
 
         expect(windowBar.element).toEqual((
             new Div([
-                new Div([title]).classname("WindowModal-title") as any,
-                new Div().classname("WindowModal-bar-spacer") as any,
+                new Div([title]).withClassname("WindowModal-title") as any,
+                new Div().withClassname("WindowModal-bar-spacer") as any,
                 new Div([
                     new Button(["✖"], "close"),
-                ]).classname("WindowModal-buttons"),
-            ]).classname("WindowModal-bar ") as Component
+                ]).withClassname("WindowModal-buttons"),
+            ]).withClassname("WindowModal-bar ")
         ).element);
     });
 
@@ -85,12 +85,12 @@ describe("WindowBar", () => {
 
         expect(windowBar.element).toEqual((
             new Div([
-                new Div([title]).classname("WindowModal-title") as any,
-                new Div().classname("WindowModal-bar-spacer") as any,
+                new Div([title]).withClassname("WindowModal-title") as any,
+                new Div().withClassname("WindowModal-bar-spacer") as any,
                 new Div([
                     new Button(["_"], "minimize"),
-                ]).classname("WindowModal-buttons"),
-            ]).classname("WindowModal-bar ") as Component
+                ]).withClassname("WindowModal-buttons"),
+            ]).withClassname("WindowModal-bar ")
         ).element);
     });
 

@@ -65,7 +65,7 @@ export class WindowModal extends Component {
         this.windowBar = new WindowBar({ window: this, ...options });
         this.addChild(this.windowBar);
 
-        this.content = new Div([this.content || ""]).classname("WindowModal-content") as Component;
+        this.content = new Div([this.content || ""]).withClassname("WindowModal-content");
         this.addChild(this.content);
 
         this.updateElement();

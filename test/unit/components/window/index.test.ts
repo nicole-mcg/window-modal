@@ -46,8 +46,8 @@ describe("WindowModal", () => {
         const element = windowModal.element;
         const expectedElement = (
             new Div([
-                new Div([""]).classname("WindowModal-content"),
-            ]).classname("WindowModal") as Div
+                new Div([""]).withClassname("WindowModal-content"),
+            ]).withClassname("WindowModal")
         );
         const { pos, size } = windowModal;
         expectedElement.setStyle({
@@ -81,8 +81,8 @@ describe("WindowModal", () => {
             new Div([
                 new Div([
                     new Div([ contentEle ]),
-                ]).classname("WindowModal-content"),
-            ]).classname("WindowModal") as Component
+                ]).withClassname("WindowModal-content"),
+            ]).withClassname("WindowModal")
         );
 
         const { pos, size } = windowModal;

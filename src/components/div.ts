@@ -6,7 +6,7 @@ export class Div extends Component {
     constructor(children: IRenderable[]= [],  className: string = "") {
         super(children);
         this.element = document.createElement("div");
-        this.classname(className);
+        this.withClassname(className);
     }
 
 }

@@ -1,6 +1,7 @@
 import { WindowModal } from "./index";
 
-export interface IWindowModalOptions {
+export interface IWindowModalOptions extends Partial<IWindowBarOptions> {
+    window?: undefined;
     title: string;
     elementSelector?: string;
 }

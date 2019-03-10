@@ -55,21 +55,16 @@ export class Component {
     public setClassName(className: string) {
         const { element } = this;
 
-        if (!element) {
+        if (!element || !className) {
             return;
         }
 
-        element.className = className;
-
+        element.className = className.trim();
     }
 
-    public classname(className?: string) {
-        if (className) {
-            this.setClassName(className);
-            return this;
-        }
-
-        return this.element ? this.element.className : "";
+    public withClassname(className: string) {
+        this.setClassName(className);
+        return this;
     }
 
     private addChildren() {

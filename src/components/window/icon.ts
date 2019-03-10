@@ -6,7 +6,9 @@ export class WindowIcon extends Component {
 
     public static createIcon(icon: IWindowIcon): HTMLElement {
 
+        const className = " WindowModal-icon";
         if (icon.element) {
+            icon.element.className += className;
             return icon.element;
         }
 
@@ -15,24 +17,28 @@ export class WindowIcon extends Component {
             if (!element) {
                 throw new Error("Could not find element for window icon: " + icon.selector);
             }
+            element.className += className;
             return element as HTMLElement;
         }
 
         if (icon.innerHTML) {
             const element = new Div().element;
             element.innerHTML = icon.innerHTML;
+            element.className += className;
             return element;
         }
 
         if (icon.src) {
             const image = new Image();
             image.src = icon.src;
+            image.className += className;
             return image;
         }
 
         // tslint:disable-next-line:no-console
         console.warn("Invalid icon given to window: ", icon);
-        return new Div().element;
+        const div = new Div().withClassname(className);
+        return div.element;
     }
 
     constructor(icon: IWindowIcon) {

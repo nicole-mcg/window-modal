@@ -40,10 +40,10 @@ export class WindowBar extends Component {
 
         const classname = compact ? "WindowModal-bar--compact" : "";
         const ele = new Div([
-            new Div([title]).classname("WindowModal-title") as Div,
-            new Div().classname("WindowModal-bar-spacer") as Div,
-            new Div(this.createButtons()).classname("WindowModal-buttons"),
-        ]).classname(`WindowModal-bar ${classname}`) as Component;
+            new Div([title]).withClassname("WindowModal-title"),
+            new Div().withClassname("WindowModal-bar-spacer"),
+            new Div(this.createButtons()).withClassname("WindowModal-buttons"),
+        ]).withClassname(`WindowModal-bar ${classname}`);
 
         this.element = ele.element;
         this.element.addEventListener("mousedown", this.onMouseDown);
