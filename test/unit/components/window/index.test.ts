@@ -199,7 +199,6 @@ describe("WindowModal", () => {
     it("can be unminimized", (done) => {
         windowModal.setStyle = jest.fn();
         windowModal.unminimize(done);
-        expect(windowModal.setStyle).toHaveBeenCalledWith({ bottom: null });
 
         setTimeout(() => {
             expect(windowModal.minimized).toBe(false);
