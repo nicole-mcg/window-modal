@@ -1,3 +1,4 @@
+import { WindowModal } from "@src/components/window";
 import { IPoint } from "@src/interfaces";
 import { WindowModalEvent } from ".";
 
@@ -9,8 +10,8 @@ export class WindowModalMoveEvent extends WindowModalEvent {
     private _newPos: IPoint;
     public get newPos() { return this._newPos; }
 
-    constructor(oldPos: IPoint, newPos: IPoint) {
-        super("move");
+    constructor(windowModal: WindowModal, oldPos: IPoint, newPos: IPoint) {
+        super("move", windowModal);
         this._oldPos = oldPos;
         this._newPos = newPos;
     }

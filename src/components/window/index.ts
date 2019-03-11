@@ -23,7 +23,7 @@ export class WindowModal extends Component {
         if (size.x < MIN_WINDOW_SIZE || size.y < MIN_WINDOW_SIZE) {
             return;
         }
-        if (!this.element.dispatchEvent(new WindowModalResizeEvent(this._size, size))) {
+        if (!this.element.dispatchEvent(new WindowModalResizeEvent(this, this._size, size))) {
             return;
         }
         this._size = size;
@@ -31,7 +31,7 @@ export class WindowModal extends Component {
     }
     public get pos() { return this._pos; }
     public set pos(pos: IPoint) {
-        if (!this.element.dispatchEvent(new WindowModalMoveEvent(this._pos, pos))) {
+        if (!this.element.dispatchEvent(new WindowModalMoveEvent(this, this._pos, pos))) {
             return;
         }
         this._pos = pos;
@@ -40,11 +40,11 @@ export class WindowModal extends Component {
     public get focused() { return this._focused; }
     public set focused(focused: boolean) {
         if (!this._focused && focused) {
-            if (!this.element.dispatchEvent(new WindowModalFocusEvent())) {
+            if (!this.element.dispatchEvent(new WindowModalFocusEvent(this))) {
                 return;
             }
         } else if (this._focused && !focused) {
-            if (!this.element.dispatchEvent(new WindowModalBlurEvent())) {
+            if (!this.element.dispatchEvent(new WindowModalBlurEvent(this))) {
                 return;
             }
         }
@@ -179,7 +179,7 @@ export class WindowModal extends Component {
             return;
         }
 
-        if (!this.element.dispatchEvent(new WindowModalMinimizeEvent())) {
+        if (!this.element.dispatchEvent(new WindowModalMinimizeEvent(this))) {
             return;
         }
 
@@ -201,7 +201,7 @@ export class WindowModal extends Component {
     }
 
     public unminimize(callback?: () => void) {
-        if (!this.element.dispatchEvent(new WindowModalUnminimizeEvent())) {
+        if (!this.element.dispatchEvent(new WindowModalUnminimizeEvent(this))) {
             return;
         }
 

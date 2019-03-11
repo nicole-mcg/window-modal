@@ -1,9 +1,10 @@
+import { WindowModal } from "@src/components/window";
 import { WindowModalEvent } from ".";
 
 export class WindowModalBlurEvent extends WindowModalEvent {
 
-    constructor() {
-        super("blur");
+    constructor(windowModal: WindowModal) {
+        super("blur", windowModal);
     }
 
 }

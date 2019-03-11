@@ -1,9 +1,10 @@
+import { WindowModal } from "@src/components/window";
 import { WindowModalEvent } from ".";
 
 export class WindowModalMinimizeEvent extends WindowModalEvent {
 
-    constructor() {
-        super("minimize");
+    constructor(windowModal: WindowModal) {
+        super("minimize", windowModal);
     }
 
 }

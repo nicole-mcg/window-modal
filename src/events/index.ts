@@ -1,11 +1,16 @@
+import { WindowModal } from "@src/components/window";
 
 export abstract class WindowModalEvent extends Event {
 
-    constructor(type: string) {
-        super("", {
+    private _windowModal: WindowModal;
+    public get windowModal() { return this._windowModal; }
+
+    constructor(type: string, windowModal: WindowModal) {
+        super(type, {
             bubbles: true,
             cancelable: false,
         });
+        this._windowModal = windowModal;
     }
 
 }

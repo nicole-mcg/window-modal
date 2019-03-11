@@ -271,14 +271,14 @@ describe("WindowModal", () => {
 
     it("will dispatch minimize event", () => {
         windowModal.minimize();
-        const event = new WindowModalMinimizeEvent();
+        const event = new WindowModalMinimizeEvent(windowModal);
         expect(windowModal.element.dispatchEvent)
             .toHaveBeenCalledWith(event);
     });
 
     it("will dispatch unminimize event", () => {
         windowModal.unminimize();
-        const event = new WindowModalUnminimizeEvent();
+        const event = new WindowModalUnminimizeEvent(windowModal);
         expect(windowModal.element.dispatchEvent)
             .toHaveBeenCalledWith(event);
     });
@@ -286,14 +286,14 @@ describe("WindowModal", () => {
     it("will dispatch focus event", () => {
         windowModal.focused = false;
         windowModal.focused = true;
-        const event = new WindowModalFocusEvent();
+        const event = new WindowModalFocusEvent(windowModal);
         expect(windowModal.element.dispatchEvent)
             .toHaveBeenCalledWith(event);
     });
 
     it("will dispatch blur event", () => {
         windowModal.focused = false;
-        const event = new WindowModalBlurEvent();
+        const event = new WindowModalBlurEvent(windowModal);
         expect(windowModal.element.dispatchEvent)
             .toHaveBeenCalledWith(event);
     });
@@ -301,7 +301,7 @@ describe("WindowModal", () => {
     it("will dispatch move event", () => {
         const oldPos = windowModal.pos;
         windowModal.pos = { x: 1, y: 1 };
-        const event = new WindowModalMoveEvent(oldPos, windowModal.pos);
+        const event = new WindowModalMoveEvent(windowModal, oldPos, windowModal.pos);
         expect(windowModal.element.dispatchEvent)
             .toHaveBeenCalledWith(event);
     });
@@ -310,7 +310,7 @@ describe("WindowModal", () => {
         const oldSize = windowModal.size;
         const newSize = { x: 500, y: 600 };
         windowModal.size = newSize;
-        const event = new WindowModalResizeEvent(oldSize, newSize);
+        const event = new WindowModalResizeEvent(windowModal, oldSize, newSize);
         expect(windowModal.element.dispatchEvent)
             .toHaveBeenCalledWith(event);
     });
