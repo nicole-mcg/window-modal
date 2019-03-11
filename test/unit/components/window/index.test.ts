@@ -315,8 +315,6 @@ describe("WindowModal", () => {
             .toHaveBeenCalledWith(event);
     });
 
-
-
     it("can prevent minimize event", () => {
         windowModal.element.dispatchEvent
             .mockReturnValue(false);
