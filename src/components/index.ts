@@ -67,6 +67,10 @@ export class Component {
         return this;
     }
 
+    public addEventListener() {
+        (this.element.addEventListener as any)(...arguments);
+    }
+
     private addChildren() {
         const { element } = this;
 
