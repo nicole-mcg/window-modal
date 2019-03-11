@@ -1,6 +1,12 @@
 import autoBind from "auto-bind";
 
 import { Component } from "@component";
+import { WindowModalBlurEvent } from "@src/events/blur";
+import { WindowModalFocusEvent } from "@src/events/focus";
+import { WindowModalMinimizeEvent } from "@src/events/minimize";
+import { WindowModalMoveEvent } from "@src/events/move";
+import { WindowModalResizeEvent } from "@src/events/resize";
+import { WindowModalUnminimizeEvent } from "@src/events/unminimize";
 import { IPoint } from "@src/interfaces";
 import { addPx, Point } from "@src/util";
 import { Div } from "../div";
@@ -14,16 +20,27 @@ export class WindowModal extends Component {
 
     public get size() { return this._size; }
     public set size(size: IPoint) {
+        if (size.x < MIN_WINDOW_SIZE || size.y < MIN_WINDOW_SIZE) {
+            return;
+        }
+
+        this.element.dispatchEvent(new WindowModalResizeEvent(this._size, size));
         this._size = size;
         this.updateElement();
     }
     public get pos() { return this._pos; }
     public set pos(pos: IPoint) {
+        this.element.dispatchEvent(new WindowModalMoveEvent(this._pos, pos));
         this._pos = pos;
         this.updateElement();
     }
     public get focused() { return this._focused; }
     public set focused(focused: boolean) {
+        if (!this._focused && focused) {
+            this.element.dispatchEvent(new WindowModalFocusEvent());
+        } else if (this._focused && !focused) {
+            this.element.dispatchEvent(new WindowModalBlurEvent());
+        }
         this._focused = focused;
         this.updateElement();
     }
@@ -149,7 +166,7 @@ export class WindowModal extends Component {
         delete this.children;
     }
 
-    public minimize(callback?: () => void) {
+    public minimize() {
         if (this.minimized) {
             this.unminimize();
             return;
@@ -166,6 +183,7 @@ export class WindowModal extends Component {
             display: "none",
         });
         this.windowBar.minimize();
+        this.element.dispatchEvent(new WindowModalMinimizeEvent());
         this._minimized = true;
         setTimeout(() => {
             this.setStyle({ height: "auto" });
@@ -177,9 +195,10 @@ export class WindowModal extends Component {
         this.content.setStyle({
             display: this._oldContentDisplay,
         });
-        this._minimized = false;
         this.updateElement();
         this.windowBar.unminimize();
+        this.element.dispatchEvent(new WindowModalUnminimizeEvent());
+        this._minimized = false;
         setTimeout(() => {
             this.setStyle({ transition: "all 0.05s ease" });
             callback && callback();
