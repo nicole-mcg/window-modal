@@ -52,9 +52,13 @@
 
 `npm install window-modal`
 
+then
+
 ```javascript
 const WindowModal = require("window-modal");
 ```
+
+or
 
 ```javascript
 import WindowModal from "window-modal";
@@ -64,9 +68,10 @@ import WindowModal from "window-modal";
 ## Usage
 
 ```
-const windowModal = new WindowModal(options);
+new WindowModal(options);
 ```
 
 - [Options](https://github.com/nik-m2/window-modal/blob/master/docs/options.md)
+- [Events](https://github.com/nik-m2/window-modal/blob/master/docs/Events.md)
 - [WindowModal Class](https://github.com/nik-m2/window-modal/blob/master/docs/WindowModal.md)
 
