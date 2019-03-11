@@ -2,6 +2,8 @@
 
 You can attach event listeners to the `WindowModal` with `addEventListener`. `preventDefault` may be called on events to stop default behaviour (E.g stop window closing)
 
+All events have key `windowModal` which was the windowModal event was called with
+
 You can listen for the following events (as well as any html events)
 
 | Event Type | Description |
