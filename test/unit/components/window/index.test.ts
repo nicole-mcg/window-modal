@@ -1,16 +1,15 @@
-import { Component } from "@component";
 import { Div } from "@src/components/div";
 import { WindowModal } from "@src/components/window";
 import * as resize from "@src/components/window/resize-handler";
 import * as bar from "@src/components/window/window-bar";
-import { addPx } from "@src/util";
-import { createEventStub } from "./test-util";
-import { WindowModalMinimizeEvent } from "@src/events/minimize";
-import { WindowModalUnminimizeEvent } from "@src/events/unminimize";
-import { WindowModalFocusEvent } from "@src/events/focus";
 import { WindowModalBlurEvent } from "@src/events/blur";
+import { WindowModalFocusEvent } from "@src/events/focus";
+import { WindowModalMinimizeEvent } from "@src/events/minimize";
 import { WindowModalMoveEvent } from "@src/events/move";
 import { WindowModalResizeEvent } from "@src/events/resize";
+import { WindowModalUnminimizeEvent } from "@src/events/unminimize";
+import { addPx } from "@src/util";
+import { createEventStub } from "./test-util";
 
 describe("WindowModal", () => {
     const title = "test title";
@@ -33,7 +32,7 @@ describe("WindowModal", () => {
 
     beforeEach(() => {
         windowModal = new WindowModal({ title });
-        windowModal.element.dispatchEvent = jest.fn();
+        windowModal.element.dispatchEvent = jest.fn().mockReturnValue(true);
     });
 
     afterEach(() => {
@@ -309,11 +308,59 @@ describe("WindowModal", () => {
 
     it("will dispatch resize event", () => {
         const oldSize = windowModal.size;
-        const newSize = { x: 500, y: 600 }
+        const newSize = { x: 500, y: 600 };
         windowModal.size = newSize;
         const event = new WindowModalResizeEvent(oldSize, newSize);
         expect(windowModal.element.dispatchEvent)
             .toHaveBeenCalledWith(event);
+    });
+
+
+
+    it("can prevent minimize event", () => {
+        windowModal.element.dispatchEvent
+            .mockReturnValue(false);
+        windowModal.minimize();
+        expect(windowModal.minimized).toBe(false);
+    });
+
+    it("can prevent unminimize event", () => {
+        windowModal.minimize();
+        windowModal.element.dispatchEvent
+            .mockReturnValue(false);
+        windowModal.unminimize();
+        expect(windowModal.minimized).toBe(true);
+    });
+
+    it("can prevent focus event", () => {
+        windowModal.focused = false;
+        windowModal.element.dispatchEvent
+            .mockReturnValue(false);
+        windowModal.focused = true;
+        expect(windowModal.focused).toBe(false);
+    });
+
+    it("can prevent blur event", () => {
+        windowModal.element.dispatchEvent
+            .mockReturnValue(false);
+        windowModal.focused = false;
+        expect(windowModal.focused).toBe(true);
+    });
+
+    it("can prevent move event", () => {
+        windowModal.element.dispatchEvent
+            .mockReturnValue(false);
+        const oldPos = windowModal.pos;
+        windowModal.pos = { x: 1, y: 1 };
+        expect(windowModal.pos).toEqual(oldPos);
+    });
+
+    it("can prevent resize event", () => {
+        windowModal.element.dispatchEvent
+            .mockReturnValue(false);
+        const oldSize = windowModal.size;
+        windowModal.size = { x: 500, y: 600 };
+        expect(windowModal.size).toEqual(oldSize);
     });
 
 });

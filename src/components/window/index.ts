@@ -23,23 +23,30 @@ export class WindowModal extends Component {
         if (size.x < MIN_WINDOW_SIZE || size.y < MIN_WINDOW_SIZE) {
             return;
         }
-
-        this.element.dispatchEvent(new WindowModalResizeEvent(this._size, size));
+        if (!this.element.dispatchEvent(new WindowModalResizeEvent(this._size, size))) {
+            return;
+        }
         this._size = size;
         this.updateElement();
     }
     public get pos() { return this._pos; }
     public set pos(pos: IPoint) {
-        this.element.dispatchEvent(new WindowModalMoveEvent(this._pos, pos));
+        if (!this.element.dispatchEvent(new WindowModalMoveEvent(this._pos, pos))) {
+            return;
+        }
         this._pos = pos;
         this.updateElement();
     }
     public get focused() { return this._focused; }
     public set focused(focused: boolean) {
         if (!this._focused && focused) {
-            this.element.dispatchEvent(new WindowModalFocusEvent());
+            if (!this.element.dispatchEvent(new WindowModalFocusEvent())) {
+                return;
+            }
         } else if (this._focused && !focused) {
-            this.element.dispatchEvent(new WindowModalBlurEvent());
+            if (!this.element.dispatchEvent(new WindowModalBlurEvent())) {
+                return;
+            }
         }
         this._focused = focused;
         this.updateElement();
@@ -172,6 +179,10 @@ export class WindowModal extends Component {
             return;
         }
 
+        if (!this.element.dispatchEvent(new WindowModalMinimizeEvent())) {
+            return;
+        }
+
         this.setStyle({
             transition: "all 0.5s ease",
             width: "200px", height: "30px",
@@ -183,7 +194,6 @@ export class WindowModal extends Component {
             display: "none",
         });
         this.windowBar.minimize();
-        this.element.dispatchEvent(new WindowModalMinimizeEvent());
         this._minimized = true;
         setTimeout(() => {
             this.setStyle({ height: "auto" });
@@ -191,13 +201,16 @@ export class WindowModal extends Component {
     }
 
     public unminimize(callback?: () => void) {
+        if (!this.element.dispatchEvent(new WindowModalUnminimizeEvent())) {
+            return;
+        }
+
         this.setStyle({ bottom: null });
         this.content.setStyle({
             display: this._oldContentDisplay,
         });
         this.updateElement();
         this.windowBar.unminimize();
-        this.element.dispatchEvent(new WindowModalUnminimizeEvent());
         this._minimized = false;
         setTimeout(() => {
             this.setStyle({ transition: "all 0.05s ease" });
