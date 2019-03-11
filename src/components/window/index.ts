@@ -205,13 +205,12 @@ export class WindowModal extends Component {
             return;
         }
 
-        this.setStyle({ bottom: null });
         this.content.setStyle({
             display: this._oldContentDisplay,
         });
-        this.updateElement();
         this.windowBar.unminimize();
         this._minimized = false;
+        this.updateElement();
         setTimeout(() => {
             this.setStyle({ transition: "all 0.05s ease" });
             callback && callback();
