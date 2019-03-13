@@ -22,17 +22,17 @@
                     title: "Test window",
                     elementSelector: "#window1",
                     // icon: { src: "https://us.123rf.com/450wm/juliarstudio/juliarstudio1604/juliarstudio160400948/55074493-green-tick-check-mark-icon-in-simple-style-on-a-white-background.jpg?ver=6" },
-                    compact: true,
+                    // compact: true,
                     // hideClose: true,
                     // hideMinimize: true
                 });
 
                 fw.addEventListener("minimize", (event) => console.log("worked", event));
 
-                // fw = new WindowModal({
-                //     title: "Test window 2", 
-                //     elementSelector: "#window2",
-                // });
+                fw = new WindowModal({
+                    title: "Test window 2", 
+                    elementSelector: "#window2",
+                });
                 console.log("fw", fw);
             }
         </script>

@@ -10,6 +10,7 @@ import { WindowModalUnminimizeEvent } from "@src/events/unminimize";
 import { IPoint } from "@src/interfaces";
 import { addPx, Point } from "@src/util";
 import { Div } from "../div";
+import { MinimizeBar } from "./../minimize-bar";
 import { IWindowModalOptions } from "./interfaces";
 import { MIN_WINDOW_SIZE, WindowResizeHandler } from "./resize-handler";
 import { WindowBar } from "./window-bar";
@@ -88,9 +89,19 @@ export class WindowModal extends Component {
 
     private _oldContentDisplay: string;
 
+    private minimizeBar: MinimizeBar;
+
     constructor(options: IWindowModalOptions = {}) {
         super();
         autoBind(this);
+
+        const minimizeBar: any = document.querySelector("#WindowModal-minimizeBar");
+        if (minimizeBar) {
+            this.minimizeBar = new MinimizeBar(minimizeBar);
+        } else {
+            this.minimizeBar = new MinimizeBar();
+            document.body.appendChild(this.minimizeBar.element);
+        }
 
         this._title = "";
         if (options.title) {
@@ -183,11 +194,13 @@ export class WindowModal extends Component {
             return;
         }
 
+        const minimizePos = this.getMinimizePos();
+
         this.setStyle({
             transition: "all 0.5s ease",
             width: "200px", height: "30px",
-            left: "0px",
-            top: "0px",
+            left: addPx(minimizePos.x),
+            bottom: addPx(0),
         });
         this._oldContentDisplay = this.content.element.style.display || "block";
         this.content.setStyle({
@@ -196,7 +209,12 @@ export class WindowModal extends Component {
         this.windowBar.minimize();
         this._minimized = true;
         setTimeout(() => {
-            this.setStyle({ height: "auto" });
+            // this.setStyle({ height: "auto" });
+            document.body.removeChild(this.element);
+            this.minimizeBar.element.appendChild(this.element);
+            this.setStyle({
+                position: "static",
+            });
         }, 500);
     }
 
@@ -207,6 +225,14 @@ export class WindowModal extends Component {
 
         this.content.setStyle({
             display: this._oldContentDisplay,
+        });
+        this.minimizeBar.element.removeChild(this.element);
+        document.body.appendChild(this.element);
+        const minimizedPos = this.getMinimizePos();
+        this.setStyle({
+            position: "absolute",
+            left: addPx(minimizedPos.x),
+            top: addPx(minimizedPos.y),
         });
         this.windowBar.unminimize();
         this._minimized = false;
@@ -254,6 +280,18 @@ export class WindowModal extends Component {
         this._mousePos = { x: event.pageX, y: event.pageY };
         this.resizeHandler.onMouseMove(event);
         this.windowBar.onMouseMove(event);
+    }
+
+    private getMinimizePos() {
+        const testEle = document.createElement("div");
+        this.minimizeBar.element.appendChild(testEle);
+        const bounds = testEle.getBoundingClientRect();
+        const pos = {
+            x: bounds.left,
+            y: bounds.top,
+        };
+        testEle.remove();
+        return pos;
     }
 
     private hijackElement(elementSelector: string): HTMLElement {
