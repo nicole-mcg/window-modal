@@ -191,7 +191,7 @@ describe("WindowModal", () => {
         expect(windowModal.setStyle).toHaveBeenCalledWith({
             transition: "all 0.5s ease",
             width: "200px", height: "30px",
-            left: "0px", bottom: "0px",
+            left: "0px", top: "0px",
         });
         expect(windowModal.minimized).toBe(true);
         expect(windowBar.minimize).toHaveBeenCalled();
@@ -199,7 +199,7 @@ describe("WindowModal", () => {
         setTimeout(() => {
             expect(windowModal.element.parentElement).toBe(windowModal.minimizeBar.element);
             done();
-        }, 700);
+        }, 1000);
     });
 
     it("can be unminimized", (done) => {
@@ -212,7 +212,7 @@ describe("WindowModal", () => {
             expect(windowModal.minimized).toBe(false);
             expect(windowBar.unminimize).toHaveBeenCalled();
             done();
-        }, 700);
+        }, 1000);
     });
 
     it("can clear mouse state", () => {
