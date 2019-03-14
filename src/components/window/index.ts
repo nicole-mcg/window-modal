@@ -200,7 +200,7 @@ export class WindowModal extends Component {
             transition: "all 0.5s ease",
             width: "200px", height: "30px",
             left: addPx(minimizePos.x),
-            bottom: addPx(0),
+            top: addPx(minimizePos.y),
         });
         this._oldContentDisplay = this.content.element.style.display || "block";
         this.content.setStyle({
