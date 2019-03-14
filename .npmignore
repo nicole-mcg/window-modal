@@ -4,7 +4,7 @@ docs
 
 tsconfig.json
 tslint.json
-jest.config.jest
+jest.config.js
 webpack.config.js
 
 .babelrc
