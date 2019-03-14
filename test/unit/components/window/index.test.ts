@@ -81,6 +81,7 @@ describe("WindowModal", () => {
 
     it("can be created with a selector", () => {
         const contentEle = new Div(["test"]);
+        (document.querySelector as any).mockReturnValueOnce(new Div().element); // for minimize bar
         (document.querySelector as any).mockReturnValue(contentEle.element.cloneNode(true));
         const query = "#content-ele";
         const windowModal: any = new WindowModal({ title, elementSelector: query });
@@ -184,20 +185,27 @@ describe("WindowModal", () => {
         expect(() => new WindowModal(options)).toThrow();
     });
 
-    it("can be minimized", () => {
+    it("can be minimized", (done) => {
         windowModal.setStyle = jest.fn();
         windowModal.minimize();
         expect(windowModal.setStyle).toHaveBeenCalledWith({
             transition: "all 0.5s ease",
             width: "200px", height: "30px",
-            left: "0px", top: "0px",
+            left: "0px", bottom: "0px",
         });
         expect(windowModal.minimized).toBe(true);
         expect(windowBar.minimize).toHaveBeenCalled();
+
+        setTimeout(() => {
+            expect(windowModal.element.parentElement).toBe(windowModal.minimizeBar.element);
+            done();
+        }, 700);
     });
 
     it("can be unminimized", (done) => {
         windowModal.setStyle = jest.fn();
+        document.body.removeChild(windowModal.element);
+        windowModal.minimizeBar.element.appendChild(windowModal.element);
         windowModal.unminimize(done);
 
         setTimeout(() => {
@@ -276,6 +284,8 @@ describe("WindowModal", () => {
     });
 
     it("will dispatch unminimize event", () => {
+        document.body.removeChild(windowModal.element);
+        windowModal.minimizeBar.element.appendChild(windowModal.element);
         windowModal.unminimize();
         const event = new WindowModalUnminimizeEvent(windowModal);
         expect(windowModal.element.dispatchEvent)
