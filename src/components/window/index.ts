@@ -1,5 +1,6 @@
 import autoBind from "auto-bind";
 
+import { WindowModalCloseEvent } from "@src/events/close";
 import { WindowModalBlurEvent } from "../../events/blur";
 import { WindowModalFocusEvent } from "../../events/focus";
 import { WindowModalMinimizeEvent } from "../../events/minimize";
@@ -14,7 +15,6 @@ import { MinimizeBar } from "./../minimize-bar";
 import { IWindowModalOptions } from "./interfaces";
 import { MIN_WINDOW_SIZE, WindowResizeHandler } from "./resize-handler";
 import { WindowBar } from "./window-bar";
-import { WindowModalCloseEvent } from "@src/events/close";
 
 export class WindowModal extends Component {
 
