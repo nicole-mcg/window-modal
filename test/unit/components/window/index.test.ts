@@ -10,6 +10,7 @@ import { WindowModalResizeEvent } from "@src/events/resize";
 import { WindowModalUnminimizeEvent } from "@src/events/unminimize";
 import { addPx } from "@src/util";
 import { createEventStub } from "./test-util";
+import { WindowModalCloseEvent } from "@src/events/close";
 
 describe("WindowModal", () => {
     const title = "test title";
@@ -274,6 +275,13 @@ describe("WindowModal", () => {
 
         expect(windowBar.onMouseMove).toHaveBeenCalledWith(event);
         expect(resizeHandler.onMouseMove).toHaveBeenCalledWith(event);
+    });
+
+    it("will dispatch close event", () => {
+        windowModal.destroy();
+        const event = new WindowModalCloseEvent(windowModal);
+        expect(windowModal.element.dispatchEvent)
+            .toHaveBeenCalledWith(event);
     });
 
     it("will dispatch minimize event", () => {

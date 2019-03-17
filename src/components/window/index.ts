@@ -14,6 +14,7 @@ import { MinimizeBar } from "./../minimize-bar";
 import { IWindowModalOptions } from "./interfaces";
 import { MIN_WINDOW_SIZE, WindowResizeHandler } from "./resize-handler";
 import { WindowBar } from "./window-bar";
+import { WindowModalCloseEvent } from "@src/events/close";
 
 export class WindowModal extends Component {
 
@@ -173,6 +174,11 @@ export class WindowModal extends Component {
     }
 
     public destroy() {
+
+        if (!this.element.dispatchEvent(new WindowModalCloseEvent(this))) {
+            return;
+        }
+
         window.removeEventListener("mouseup", this.onMouseUp);
         window.removeEventListener("mousemove", this.onMouseMove);
         window.removeEventListener("select", this.onSelectStart);
