@@ -1,4 +1,4 @@
-import { IPoint } from "@src/interfaces";
+import { IPoint } from "../../interfaces";
 import { WindowModal } from "./index";
 
 export interface IWindowModalOptions extends Partial<IWindowBarOptions> {

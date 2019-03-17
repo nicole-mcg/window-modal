@@ -1,4 +1,4 @@
-import { IRenderable } from "@src/interfaces";
+import { IRenderable } from "../interfaces";
 import { Component } from "./index";
 
 export class Div extends Component {
