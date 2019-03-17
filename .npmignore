@@ -10,3 +10,5 @@ webpack.config.js
 .babelrc
 .gitignore
 .travis.yml
+
+!build/**/*.ts
