@@ -1,8 +1,9 @@
-
-import { WindowModal } from "./components/window";
-
 import "./index.less";
 
+export { WindowModal } from "./components/window";
+
+export { IPoint, IRenderable } from "./interfaces";
 export {
-    WindowModal as WindowModal,
-};
+    IWindowIcon,
+    IWindowModalOptions,
+} from "./components/window/interfaces";
