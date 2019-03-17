@@ -1,6 +1,6 @@
 {
   "name": "window-modal",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "A mini window in your browser that can move, resize, minimize, and more!",
   "main": "build/index.js",
   "dependencies": {},
