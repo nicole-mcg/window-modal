@@ -9,6 +9,7 @@ export {
     IWindowModalOptions,
 } from "./components/window/interfaces";
 
+export { WindowModalCloseEvent } from "./events/close";
 export { WindowModalBlurEvent } from "./events/blur";
 export { WindowModalFocusEvent } from "./events/focus";
 export { WindowModalMinimizeEvent } from "./events/minimize";
