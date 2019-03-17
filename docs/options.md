@@ -1,13 +1,5 @@
 # Options
 
-Example:
-```javascript
-const options = {
-  title: "Window Title!",
-};
-new WindowModal(options);
-```
-
 <b><sub>* All options are optional</sub></b>
 
 | Name | Type | Description |
