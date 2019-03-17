@@ -67,7 +67,7 @@ export class Component {
         return this;
     }
 
-    public addEventListener() {
+    public addEventListener(_eventName: string, _handler: any) {
         (this.element.addEventListener as any)(...arguments);
     }
 
