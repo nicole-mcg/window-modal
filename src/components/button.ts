@@ -1,5 +1,5 @@
-import { Component } from "@component";
-import { IRenderable } from "@src/interfaces";
+import { IRenderable } from "../interfaces";
+import { Component } from "./index";
 
 export class Button extends Component {
 

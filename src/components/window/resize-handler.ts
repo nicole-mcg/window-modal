@@ -1,5 +1,5 @@
-import { IPoint } from "@src/interfaces";
 import autoBind from "auto-bind";
+import { IPoint } from "../../interfaces";
 import { WindowModal } from "./index";
 
 const RESIZE_DIST = 10;

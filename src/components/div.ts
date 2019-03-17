@@ -1,5 +1,5 @@
-import { Component } from "@component";
 import { IRenderable } from "@src/interfaces";
+import { Component } from "./index";
 
 export class Div extends Component {
 

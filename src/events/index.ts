@@ -1,4 +1,4 @@
-import { WindowModal } from "@src/components/window";
+import { WindowModal } from "../components/window";
 
 export abstract class WindowModalEvent extends Event {
 

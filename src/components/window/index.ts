@@ -1,15 +1,15 @@
 import autoBind from "auto-bind";
 
-import { Component } from "@component";
-import { WindowModalBlurEvent } from "@src/events/blur";
-import { WindowModalFocusEvent } from "@src/events/focus";
-import { WindowModalMinimizeEvent } from "@src/events/minimize";
-import { WindowModalMoveEvent } from "@src/events/move";
-import { WindowModalResizeEvent } from "@src/events/resize";
-import { WindowModalUnminimizeEvent } from "@src/events/unminimize";
-import { IPoint } from "@src/interfaces";
-import { addPx, Point } from "@src/util";
+import { WindowModalBlurEvent } from "../../events/blur";
+import { WindowModalFocusEvent } from "../../events/focus";
+import { WindowModalMinimizeEvent } from "../../events/minimize";
+import { WindowModalMoveEvent } from "../../events/move";
+import { WindowModalResizeEvent } from "../../events/resize";
+import { WindowModalUnminimizeEvent } from "../../events/unminimize";
+import { IPoint } from "../../interfaces";
+import { addPx, Point } from "../../util";
 import { Div } from "../div";
+import { Component } from "../index";
 import { MinimizeBar } from "./../minimize-bar";
 import { IWindowModalOptions } from "./interfaces";
 import { MIN_WINDOW_SIZE, WindowResizeHandler } from "./resize-handler";

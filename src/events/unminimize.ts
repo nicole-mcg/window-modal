@@ -1,5 +1,5 @@
-import { WindowModal } from "@src/components/window";
 import { WindowModalEvent } from ".";
+import { WindowModal } from "../components/window";
 
 export class WindowModalUnminimizeEvent extends WindowModalEvent {
 

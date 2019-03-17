@@ -1,10 +1,10 @@
-import { Component } from "@component";
-import { WindowModal } from "@components/window";
-import { IPoint, IRenderable } from "@src/interfaces";
 import autoBind from "auto-bind";
+import { IPoint, IRenderable } from "../../interfaces";
 import { Button } from "../button";
 import { Div } from "../div";
+import { Component } from "../index";
 import { WindowIcon } from "./icon";
+import { WindowModal } from "./index";
 import { IWindowBarOptions } from "./interfaces";
 
 export class WindowBar extends Component {

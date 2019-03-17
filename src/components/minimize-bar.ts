@@ -1,6 +1,4 @@
-import { Component } from "@component";
-import { Div } from "@src/components/div";
-import { IRenderable } from "@src/interfaces";
+import { Div } from "../components/div";
 
 export class MinimizeBar extends Div {
 

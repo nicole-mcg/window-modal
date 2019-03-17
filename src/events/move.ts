@@ -1,6 +1,6 @@
-import { WindowModal } from "@src/components/window";
-import { IPoint } from "@src/interfaces";
 import { WindowModalEvent } from ".";
+import { WindowModal } from "../components/window";
+import { IPoint } from "../interfaces";
 
 export class WindowModalMoveEvent extends WindowModalEvent {
 
