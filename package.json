@@ -4,6 +4,7 @@
   "description": "A mini window in your browser that can move, resize, minimize, and more!",
   "main": "build/index.js",
   "dependencies": {},
+  "types": "./build/src/index.d.ts",
   "devDependencies": {
     "@babel/polyfill": "^7.2.5",
     "@types/auto-bind": "^1.2.0",
