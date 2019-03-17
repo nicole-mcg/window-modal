@@ -8,6 +8,7 @@ You can listen for the following events (as well as any html events)
 
 | Event Type | Description |
 | ------------- | ----- |
+| close | Called when window is closed |
 | minimize | Called when window is minimized |
 | unminimize | Called when window is unminimized |
 | focus | Called when window gains focus |
