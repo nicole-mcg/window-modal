@@ -68,6 +68,7 @@ import WindowModal from "window-modal";
 ## Usage
 
 ```
+const options = { option: value };
 new WindowModal(options);
 ```
 
