@@ -1,6 +1,7 @@
 import "./index.less";
 
-export { WindowModal } from "./components/window";
+import { WindowModal } from "./components/window";
+export default WindowModal;
 
 export { IPoint, IRenderable } from "./interfaces";
 export {
