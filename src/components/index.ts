@@ -71,6 +71,10 @@ export class Component {
         (this.element.addEventListener as any)(...arguments);
     }
 
+    public removeEventListener(_eventName: string, _handler: any) {
+        (this.element.removeEventListener as any)(...arguments);
+    }
+
     private addChildren() {
         const { element } = this;
 
