@@ -22,6 +22,10 @@ describe("WindowModal", () => {
         minimize: jest.fn(),
         unminimize: jest.fn(),
         setTitle: jest.fn(),
+        setIcon: jest.fn(),
+        setCompact: jest.fn(),
+        setHideClose: jest.fn(),
+        setHideMinimize: jest.fn(),
     };
     const resizeHandler = {
         clearMouseState: jest.fn(),
@@ -178,6 +182,30 @@ describe("WindowModal", () => {
         const newTitle = "test";
         windowModal.title = newTitle;
         expect(windowBar.setTitle).toHaveBeenCalledWith(newTitle);
+    });
+
+    it("can set icon", () => {
+        const newIcon = {};
+        windowModal.icon = newIcon;
+        expect(windowBar.setIcon).toHaveBeenCalledWith(newIcon);
+    });
+
+    it("can set compact", () => {
+        const compact = true;
+        windowModal.compact = compact;
+        expect(windowBar.setCompact).toHaveBeenCalledWith(compact);
+    });
+
+    it("can set hideClose", () => {
+        const hideClose = true;
+        windowModal.hideClose = hideClose;
+        expect(windowBar.setHideClose).toHaveBeenCalledWith(hideClose);
+    });
+
+    it("can set icon ", () => {
+        const hideMinimize = true;
+        windowModal.hideMinimize = hideMinimize;
+        expect(windowBar.setHideMinimize).toHaveBeenCalledWith(hideMinimize);
     });
 
     it("will throw error on invalid initial title", () => {

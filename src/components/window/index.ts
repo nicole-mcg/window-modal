@@ -12,7 +12,7 @@ import { addPx, Point } from "../../util";
 import { Div } from "../div";
 import { Component } from "../index";
 import { MinimizeBar } from "./../minimize-bar";
-import { IWindowModalOptions } from "./interfaces";
+import { IWindowModalOptions, IWindowIcon } from "./interfaces";
 import { MIN_WINDOW_SIZE, WindowResizeHandler } from "./resize-handler";
 import { WindowBar } from "./window-bar";
 
@@ -67,6 +67,19 @@ export class WindowModal extends Component {
     public set title(title: string) {
         this.windowBar.setTitle(title);
         this._title = title;
+    }
+
+    public set icon(icon: IWindowIcon) {
+        this.windowBar.setIcon(icon);
+    }
+    public set compact(compact: boolean) {
+        this.windowBar.setCompact(compact);
+    }
+    public set hideClose(hideClose: boolean) {
+        this.windowBar.setHideClose(hideClose);
+    }
+    public set hideMinimize(hideMinimize: boolean) {
+        this.windowBar.setHideMinimize(hideMinimize);
     }
 
     public get moving() { return this.windowBar.moving; }
