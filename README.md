@@ -1,7 +1,5 @@
 # window-modal [![Build Status](https://travis-ci.org/nik-m2/window-modal.svg?branch=master)](https://travis-ci.org/nik-m2/window-modal) [![npm version](https://badge.fury.io/js/window-modal.svg)](https://badge.fury.io/js/window-modal)
 
-
-
 <p align="center">
     A modal window element designed to be smooth, clean and user friendly.
     <br>
@@ -16,6 +14,7 @@
 
 ## Features
 
+- [React Wrapper](https://github.com/nik-m2/react-window-modal)
 - Pure JS (Written in TypeScript)
 - Designed to be used in vanilla JS, or wrapped by front end frameworks (React, Vue, etc)
 - Highly tested
