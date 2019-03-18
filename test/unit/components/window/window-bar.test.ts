@@ -36,8 +36,8 @@ describe("WindowBar", () => {
                 new Div([title]).withClassname("WindowModal-title") as any,
                 new Div().withClassname("WindowModal-bar-spacer") as any,
                 new Div([
-                    new Button(["_"], "minimize"),
-                    new Button(["✖"], "close"),
+                    new Button(["_"], "minimize").withStyle({ display: "default" }),
+                    new Button(["✖"], "close").withStyle({ display: "default" }),
                 ]).withClassname("WindowModal-buttons"),
             ]).withClassname("WindowModal-bar ")
         ).element);
@@ -74,8 +74,8 @@ describe("WindowBar", () => {
                 new Div([iconElement, title]).withClassname("WindowModal-title") as any,
                 new Div().withClassname("WindowModal-bar-spacer") as any,
                 new Div([
-                    new Button(["_"], "minimize"),
-                    new Button(["✖"], "close"),
+                    new Button(["_"], "minimize").withStyle({ display: "default" }),
+                    new Button(["✖"], "close").withStyle({ display: "default" }),
                 ]).withClassname("WindowModal-buttons"),
             ]).withClassname("WindowModal-bar ")
         ).element);
@@ -87,15 +87,8 @@ describe("WindowBar", () => {
             hideMinimize: true,
         });
 
-        expect(windowBar.element).toEqual((
-            new Div([
-                new Div([title]).withClassname("WindowModal-title") as any,
-                new Div().withClassname("WindowModal-bar-spacer") as any,
-                new Div([
-                    new Button(["✖"], "close"),
-                ]).withClassname("WindowModal-buttons"),
-            ]).withClassname("WindowModal-bar ")
-        ).element);
+        const { minimizeButton } = windowBar;
+        expect(minimizeButton.element.style.display).toEqual("none");
     });
 
     it("can hide close button", () => {
@@ -104,15 +97,8 @@ describe("WindowBar", () => {
             hideClose: true,
         });
 
-        expect(windowBar.element).toEqual((
-            new Div([
-                new Div([title]).withClassname("WindowModal-title") as any,
-                new Div().withClassname("WindowModal-bar-spacer") as any,
-                new Div([
-                    new Button(["_"], "minimize"),
-                ]).withClassname("WindowModal-buttons"),
-            ]).withClassname("WindowModal-bar ")
-        ).element);
+        const { closeButton } = windowBar;
+        expect(closeButton.element.style.display).toEqual("none");
     });
 
     it("can move the window", () => {

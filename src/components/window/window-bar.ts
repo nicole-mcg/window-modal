@@ -5,16 +5,18 @@ import { Div } from "../div";
 import { Component } from "../index";
 import { WindowIcon } from "./icon";
 import { WindowModal } from "./index";
-import { IWindowBarOptions } from "./interfaces";
+import { IWindowBarOptions, IWindowIcon } from "./interfaces";
 
 export class WindowBar extends Component {
     public get moving() { return Boolean(this._moveStartPos); }
-    protected icon: WindowIcon;
     protected title: Div;
     protected minimizeButton: Button;
     protected closeButton: Button;
 
-    protected options: IWindowBarOptions;
+    protected icon: WindowIcon;
+    protected compact: boolean;
+    protected hideClose: boolean;
+    protected hideMinimize: boolean;
 
     protected window: WindowModal;
 
@@ -23,8 +25,10 @@ export class WindowBar extends Component {
     constructor(options: IWindowBarOptions) {
         super();
         autoBind(this);
-        this.options = options;
         this.window = options.window;
+        this.hideClose = Boolean(options.hideClose);
+        this.hideMinimize = Boolean(options.hideMinimize);
+        this.compact = Boolean(options.compact);
 
         this.element = null as any;
         this.icon = null as any;
@@ -100,6 +104,37 @@ export class WindowBar extends Component {
         this.title.element.textContent = title;
     }
 
+    public setIcon(icon: IWindowIcon) {
+        if (this.icon) {
+            this.title.removeChild(this.icon);
+        }
+
+        this.icon = new WindowIcon(icon);
+        this.title.addChild(this.icon, 0);
+    }
+
+    public setCompact(compact: boolean) {
+        const { element } = this;
+        if (!compact && this.compact) {
+            const newClass = element.className.replace("WindowModel-bar--compact", "");
+            element.className = newClass;
+        }
+
+        if (compact && !this.compact) {
+            element.className += "WindowModel-bar--compact";
+        }
+    }
+
+    public setHideClose(hideClose: boolean) {
+        const display = hideClose ? "none" : "default";
+        this.closeButton.setStyle({ display });
+    }
+
+    public setHideMinimize(hideMinimize: boolean) {
+        const display = hideMinimize ? "none" : "default";
+        this.minimizeButton.setStyle({ display });
+    }
+
     public minimize() {
         this.setStyle({ cursor: "default" });
         this.minimizeButton.element.textContent = "□";
@@ -124,8 +159,6 @@ export class WindowBar extends Component {
     }
 
     private createButtons() {
-        const { options } = this;
-        const { hideMinimize, hideClose } = options;
         const buttons = [];
 
         const createButton = (text: string, id: string, onClick?: () => void): Button => {
@@ -136,15 +169,13 @@ export class WindowBar extends Component {
             return button;
         };
 
-        if (!hideMinimize) {
-            this.minimizeButton = createButton("_", "minimize", this.window.minimize);
-            buttons.push(this.minimizeButton);
-        }
+        this.minimizeButton = createButton("_", "minimize", this.window.minimize);
+        buttons.push(this.minimizeButton);
+        this.setHideMinimize(this.hideMinimize);
 
-        if (!hideClose) {
-            this.closeButton = createButton("✖", "close", this.window.destroy);
-            buttons.push(this.closeButton);
-        }
+        this.closeButton = createButton("✖", "close", this.window.destroy);
+        buttons.push(this.closeButton);
+        this.setHideClose(this.hideClose);
 
         return buttons;
     }

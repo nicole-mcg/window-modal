@@ -26,7 +26,7 @@ export class Component {
         parent.addChild(this);
     }
 
-    public addChild(child: Component) {
+    public addChild(child: Component, index?: number) {
         const { element } = this;
 
         const childElement = child.element;
@@ -34,12 +34,39 @@ export class Component {
             return;
         }
 
-        element.appendChild(childElement);
+        const { children } = element;
+        if (typeof index === "number" && children.length > index) {
+            element.insertBefore(childElement, children[index]);
+        } else {
+            element.appendChild(childElement);
+        }
+
 
         const isAlreadyChild = this.children.find((realChild) => child === realChild);
         if (!isAlreadyChild) {
             this.children.push(child);
         }
+    }
+
+    public removeChild(child: Component) {
+        const { element } = this;
+
+        const childElement = child.element;
+        if (!element || !childElement) {
+            return;
+        }
+
+        element.removeChild(child.element);
+
+        const childIndex = this.children.findIndex((realChild) => child === realChild);
+        if (!childIndex) {
+            this.children.splice(childIndex, 1);
+        }
+    }
+
+    public withStyle(style: IStyle) {
+        this.setStyle(style);
+        return this;
     }
 
     public setStyle(style: IStyle) {
