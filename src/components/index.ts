@@ -41,7 +41,6 @@ export class Component {
             element.appendChild(childElement);
         }
 
-
         const isAlreadyChild = this.children.find((realChild) => child === realChild);
         if (!isAlreadyChild) {
             this.children.push(child);

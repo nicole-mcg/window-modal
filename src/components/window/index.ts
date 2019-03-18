@@ -12,7 +12,7 @@ import { addPx, Point } from "../../util";
 import { Div } from "../div";
 import { Component } from "../index";
 import { MinimizeBar } from "./../minimize-bar";
-import { IWindowModalOptions, IWindowIcon } from "./interfaces";
+import { IWindowIcon, IWindowModalOptions } from "./interfaces";
 import { MIN_WINDOW_SIZE, WindowResizeHandler } from "./resize-handler";
 import { WindowBar } from "./window-bar";
 
