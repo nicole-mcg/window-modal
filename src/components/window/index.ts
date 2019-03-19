@@ -197,8 +197,8 @@ export class WindowModal extends Component {
         window.removeEventListener("select", this.onSelectStart);
         window.removeEventListener("mouseenter", this.onMouseEnter);
 
+        this.element.remove();
         this.windowBar.destroy();
-        document.body.removeChild(this.element);
         delete this.element;
         delete this.children;
     }
