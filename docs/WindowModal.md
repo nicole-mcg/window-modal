@@ -11,6 +11,8 @@ The `WindowModal` class has a number of properties and functions which you can u
 | title | string | <ul><li>- [x] </li></ul>  | The title for the window |
 | size | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [x] </li></ul>  | The size of the window |
 | pos | [IPoint](https://github.com/nik-m2/window-modal/blob/master/docs/IPoint.md) | <ul><li>- [x] </li></ul>  | The location of the window `left: pos.x; top: pos.y` |
+| hideClose | boolean | <ul><li>- [x] </li></ul>  | If true, the close button is hidden |
+| hideMinimize | boolean | <ul><li>- [x] </li></ul>  | If true, the minimize button is hidden |
 | focused | boolean | <ul><li>- [x] </li></ul>  | True if the window element has focus |
 | resizable | boolean | <ul><li>- [x] </li></ul>  | If false, the window cannot be resized by the user |
 | movable | boolean | <ul><li>- [x] </li></ul>  | If false, the window cannot be moved by the user |
