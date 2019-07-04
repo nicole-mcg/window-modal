@@ -146,7 +146,7 @@ export class WindowModal extends Component {
 
         this.movable = true;
         if (options.movable === false) {
-            this.resizable = false;
+            this.movable = false;
         }
 
         const { elementSelector } = options;

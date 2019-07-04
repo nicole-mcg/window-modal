@@ -169,12 +169,13 @@ describe("WindowModal", () => {
         const movable = false;
         const options: any = { title, movable };
         const windowModal: any = new WindowModal(options);
-        expect(windowModal.resizable).toBe(movable);
+        expect(windowModal.movable).toBe(movable);
     });
 
-    it("won't set resizable false for undefined", () => {
+    it("won't set resizable and movable to false for undefined", () => {
         const options: any = { title };
         const windowModal: any = new WindowModal(options);
+        expect(windowModal.resizable).toBe(true);
         expect(windowModal.movable).toBe(true);
     });
 
