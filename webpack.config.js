@@ -12,7 +12,7 @@ module.exports = {
     index: './src/index.ts',
   },
   target: 'web',
-  devtool: "inline-source-map",
+//   devtool: "inline-source-map",
   mode: "production",
   module: {
     rules: [
@@ -20,7 +20,7 @@ module.exports = {
         test: /\.ts$/,
         use: [
           'ts-loader',
-          'source-map-loader',
+        //   'source-map-loader',
         ]
       },
       {

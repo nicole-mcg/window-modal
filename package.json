@@ -1,6 +1,6 @@
 {
   "name": "window-modal",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A mini window in your browser that can move, resize, minimize, and more!",
   "main": "build/index.js",
   "dependencies": {},
@@ -36,7 +36,7 @@
   "scripts": {
     "start": "cp ./test/public/* ./build && serve ./build",
     "test": "jest",
-    "build": "webpack",
+    "build": "webpack && mv ./build/src/index.d.ts ./build && rm -rf ./build/src rm -rf ./build/test",
     "watch": "webpack --watch",
     "lint": "tslint -p ./tsconfig.json"
   },

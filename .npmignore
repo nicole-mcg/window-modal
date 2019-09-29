@@ -1,6 +1,9 @@
 src
 test
 docs
+build/src/*
+
+!build/src/index.d.ts
 
 tsconfig.json
 tslint.json
